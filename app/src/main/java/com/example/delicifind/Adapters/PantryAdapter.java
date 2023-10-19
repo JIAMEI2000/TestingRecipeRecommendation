@@ -1,4 +1,4 @@
-package com.example.testingreciperecommendation.Adapters;
+package com.example.delicifind.Adapters;
 
 
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.testingreciperecommendation.Models.Pantry;
-import com.example.testingreciperecommendation.R;
+import com.example.delicifind.Models.Pantry;
+import com.example.delicifind.R;
 
 
 import java.util.ArrayList;

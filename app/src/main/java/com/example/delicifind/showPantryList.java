@@ -1,4 +1,4 @@
-package com.example.testingreciperecommendation;
+package com.example.delicifind;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.testingreciperecommendation.Adapters.PantryAdapter;
-import com.example.testingreciperecommendation.Models.Pantry;
+import com.example.delicifind.Adapters.PantryAdapter;
+import com.example.delicifind.Models.Pantry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

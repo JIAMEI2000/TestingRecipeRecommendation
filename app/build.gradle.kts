@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testingreciperecommendation"
+    namespace = "com.example.delicifind"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.testingreciperecommendation"
+        applicationId = "com.example.delicifind"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

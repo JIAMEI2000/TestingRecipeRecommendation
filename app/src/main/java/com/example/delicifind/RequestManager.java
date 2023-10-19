@@ -1,11 +1,11 @@
-package com.example.testingreciperecommendation;
+package com.example.delicifind;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.testingreciperecommendation.Listeners.PantryItemsResponseListener;
-import com.example.testingreciperecommendation.Listeners.RecipesByIngredientsResponseListener;
-import com.example.testingreciperecommendation.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.Listeners.PantryItemsResponseListener;
+import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
+import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

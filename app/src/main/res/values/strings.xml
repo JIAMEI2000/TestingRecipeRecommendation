@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">testingRecipeRecommendation</string>
+    <string name="app_name">DeliciFind</string>
     <string name="api_key">8566dd6ed1514c97ab0619dbdc76735d</string>
 </resources>

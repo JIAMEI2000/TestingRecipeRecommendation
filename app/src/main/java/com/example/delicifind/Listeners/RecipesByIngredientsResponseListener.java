@@ -1,6 +1,6 @@
-package com.example.testingreciperecommendation.Listeners;
+package com.example.delicifind.Listeners;
 
-import com.example.testingreciperecommendation.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 
 import java.util.List;
 

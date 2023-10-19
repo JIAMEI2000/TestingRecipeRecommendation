@@ -1,7 +1,6 @@
-package com.example.testingreciperecommendation.Adapters;
+package com.example.delicifind.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.testingreciperecommendation.Models.RecipesByIngredientsApiResponse;
-import com.example.testingreciperecommendation.R;
+import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.R;
 
 import java.util.List;
 

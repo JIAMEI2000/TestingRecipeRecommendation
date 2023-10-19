@@ -1,4 +1,4 @@
-package com.example.testingreciperecommendation.Models;
+package com.example.delicifind.Models;
 
 import java.util.ArrayList;
 

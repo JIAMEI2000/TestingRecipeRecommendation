@@ -1,8 +1,8 @@
-package com.example.testingreciperecommendation.Models;
+package com.example.delicifind.Models;
 
 import java.util.ArrayList;
 
-public class MissedIngredient {
+public class UsedIngredient {
     public int id;
     public double amount;
     public String unit;
@@ -13,6 +13,5 @@ public class MissedIngredient {
     public String original;
     public String originalName;
     public ArrayList<String> meta;
-    public String extendedName;
     public String image;
 }

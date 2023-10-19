@@ -1,4 +1,4 @@
-package com.example.testingreciperecommendation;
+package com.example.delicifind;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,10 +10,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.testingreciperecommendation.Adapters.RecipesByIngredientsAdapter;
-import com.example.testingreciperecommendation.Listeners.RecipesByIngredientsResponseListener;
-import com.example.testingreciperecommendation.Models.RecipesByIngredientsApiResponse;
-import com.example.testingreciperecommendation.Listeners.PantryItemsResponseListener;
+import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
+import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
+import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         manager = new RequestManager(this);
 //        manager.getRecipesByIngredients(recipesByIngredientsResponseListener);
-        manager.retrievePantryItems(new com.example.testingreciperecommendation.Listeners.PantryItemsResponseListener() {
+        manager.retrievePantryItems(new com.example.delicifind.Listeners.PantryItemsResponseListener() {
             @Override
             public void onPantryItemsRetrieved(String concatenatedIngredients) {
                 // Now that you have the pantry items, proceed to get recipes

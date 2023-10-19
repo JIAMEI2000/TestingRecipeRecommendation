@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3714309630:android:b50faab09180df6f4474af",
+        "mobilesdk_app_id": "1:3714309630:android:71b3e82002a516d74474af",
         "android_client_info": {
-          "package_name": "com.example.testingreciperecommendation"
+          "package_name": "com.example.delicifind"
         }
       },
       "oauth_client": [],

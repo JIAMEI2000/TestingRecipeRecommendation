@@ -1,4 +1,4 @@
-package com.example.testingreciperecommendation;
+package com.example.delicifind;
 
 import android.content.Context;
 
