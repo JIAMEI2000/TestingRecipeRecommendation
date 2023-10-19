@@ -3,6 +3,7 @@ package com.example.testingreciperecommendation;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.testingreciperecommendation.Listeners.PantryItemsResponseListener;
 import com.example.testingreciperecommendation.Listeners.RecipesByIngredientsResponseListener;
 import com.example.testingreciperecommendation.Models.RecipesByIngredientsApiResponse;
 import com.google.firebase.database.DataSnapshot;
@@ -11,7 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -104,10 +104,6 @@ public class RequestManager {
         });
     }
 
-    public interface PantryItemsResponseListener {
-        void onPantryItemsRetrieved(String concatenatedIngredients);
-        void onPantryItemsError(String message);
-    }
 
     private interface CallRecipesByIngredients{
         @GET("recipes/findByIngredients")
