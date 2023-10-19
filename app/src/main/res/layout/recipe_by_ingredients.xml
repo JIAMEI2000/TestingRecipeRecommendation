@@ -26,6 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imageView_food"
+            android:scaleType="centerCrop"
+            android:layout_margin="8dp"/>
+
         <TextView
             android:id="@+id/textView_usedCount"
             android:text="Used Ingredient Count"

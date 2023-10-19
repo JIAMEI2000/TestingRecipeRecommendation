@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.example.delicifind.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
         holder.title.setSelected(true);
         holder.usedCount.setText(list.get(position).usedIngredientCount+" Used Ingredient");
         holder.missedCount.setText(list.get(position).missedIngredientCount+" Missed Ingredient");
-
+        Picasso.get().load(list.get(position).image).into(holder.foodImage);
 
     }
 
@@ -54,6 +56,7 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
 class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
     CardView recipe_list_container;
     TextView title, usedCount, missedCount;
+    ImageView foodImage;
 
     public RecipesByIngredientsViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -61,6 +64,7 @@ class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
         title = itemView.findViewById(R.id.textView_title);
         usedCount = itemView.findViewById(R.id.textView_usedCount);
         missedCount = itemView.findViewById(R.id.textView_MissedCount);
+        foodImage = itemView.findViewById(R.id.imageView_food);
 
     }
 }
