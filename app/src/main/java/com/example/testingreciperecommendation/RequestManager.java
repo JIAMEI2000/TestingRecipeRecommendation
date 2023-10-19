@@ -40,25 +40,22 @@ public class RequestManager {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 StringBuilder ingredientsBuilder = new StringBuilder();
-                boolean firstIngredient = true;
 
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                    String ingredient = childSnapshot.child("0").getValue(String.class);
+                    String pName = childSnapshot.child("pName").getValue(String.class);
 
-                    if (ingredient != null) {
+                    if (pName != null) {
                         // Add a comma if it's not the first ingredient
-                        if (!firstIngredient) {
+                        if (ingredientsBuilder.length() > 0) {
                             ingredientsBuilder.append(",");
                         }
 
-                        ingredientsBuilder.append(ingredient);
-                        firstIngredient = false;
+                        ingredientsBuilder.append(pName);
                     }
                 }
 
                 String concatenatedIngredients = ingredientsBuilder.toString();
 
-                // Log the value here
                 Log.d("RequestManager", "Concatenated Ingredients: " + concatenatedIngredients);
 
                 listener.onPantryItemsRetrieved(concatenatedIngredients);
@@ -86,7 +83,7 @@ public class RequestManager {
 
         Call<List<RecipesByIngredientsApiResponse>> call = callRecipesByIngredients.callRecipeByIngredient(
                 context.getString(R.string.api_key),
-                "8",  // Adjust the number as needed
+                "2",  // Adjust the number as needed
                 ingredients
         );
 
