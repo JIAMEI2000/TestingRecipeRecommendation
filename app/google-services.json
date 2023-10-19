@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "3714309630",
+    "firebase_url": "https://testrecipe-b9b69-default-rtdb.firebaseio.com",
+    "project_id": "testrecipe-b9b69",
+    "storage_bucket": "testrecipe-b9b69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3714309630:android:b50faab09180df6f4474af",
+        "android_client_info": {
+          "package_name": "com.example.testingreciperecommendation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmr1jWNl-5ODiuKpw75eiIi9FQnDKgCHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
