@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TestingRecipeRecommendation"
         tools:targetApi="31">
         <activity
+            android:name=".showProductOption"
+            android:exported="false" />
+        <activity
             android:name=".showPantryList"
             android:exported="false" />
         <activity

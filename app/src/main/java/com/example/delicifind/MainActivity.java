@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
-    private Button pButton;
+    private Button pButton,poButton;
     RequestManager manager;
 
     RecipesByIngredientsAdapter recipesByIngredientsAdapter;
@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         pButton.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, showPantryList.class));
         });
+
+        poButton = findViewById(R.id.showProductBtn);
+        poButton.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, showProductOption.class));
+        });
+
     }
 
     private final RecipesByIngredientsResponseListener recipesByIngredientsResponseListener = new RecipesByIngredientsResponseListener() {
