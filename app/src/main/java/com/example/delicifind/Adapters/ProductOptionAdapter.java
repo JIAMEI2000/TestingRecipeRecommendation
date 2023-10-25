@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.delicifind.Models.Pantry;
 import com.example.delicifind.Models.ProductOption;
 import com.example.delicifind.R;
 
@@ -23,6 +22,16 @@ public class ProductOptionAdapter extends RecyclerView.Adapter<ProductOptionAdap
 
     Context context;
     ArrayList<ProductOption> list;
+
+    private OnAddButtonClickListener addButtonClickListener;
+
+    public interface OnAddButtonClickListener {
+        void onAddButtonClick(String poName, String category);
+    }
+
+    public void setOnAddButtonClickListener(OnAddButtonClickListener listener) {
+        this.addButtonClickListener = listener;
+    }
 
     public ProductOptionAdapter(Context context, ArrayList<ProductOption> list) {
         this.context = context;
@@ -48,6 +57,16 @@ public class ProductOptionAdapter extends RecyclerView.Adapter<ProductOptionAdap
                 .circleCrop()
                 .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal)
                 .into(holder.poImage);
+
+        // Set a click listener for the "Add" button
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (addButtonClickListener != null) {
+                    addButtonClickListener.onAddButtonClick(productOption.getPoName(),productOption.getCategory());
+                }
+            }
+        });
     }
 
     @Override
