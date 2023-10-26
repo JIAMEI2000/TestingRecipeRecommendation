@@ -5,15 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pantry Inventory"
-        android:id="@+id/pantryInventoryText"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:padding="16dp" />
+    <include
+        layout="@layout/toolbar"/>
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Kitchen Inventory"-->
+<!--        android:id="@+id/pantryInventoryText"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="30sp"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="16dp" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pantryRV"

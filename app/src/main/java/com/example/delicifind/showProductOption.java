@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.delicifind.Adapters.ProductOptionAdapter;
 import com.example.delicifind.Models.ProductOption;
@@ -26,13 +27,16 @@ public class showProductOption extends AppCompatActivity {
     ArrayList<ProductOption> poList;
     DatabaseReference poDatabase;
     ProductOptionAdapter poAdapter;
-
     ImageView addButton;
+    TextView titleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_product_option);
+
+        titleText = findViewById(R.id.titleText);
+        titleText.setText("Product List");
 
         productRV = findViewById(R.id.productRV);
         View productOptionView = getLayoutInflater().inflate(R.layout.product_option, null);

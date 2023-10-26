@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
@@ -24,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
     RecipesByIngredientsAdapter recipesByIngredientsAdapter;
     RecyclerView recipeRecyclerView;
+    TextView titleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        titleText = findViewById(R.id.titleText);
+        titleText.setText("Recipe");
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Loading...");
