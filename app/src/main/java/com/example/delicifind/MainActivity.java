@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,15 +15,15 @@ import android.widget.Toast;
 import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
-    private Button pButton,poButton;
+//    private Button pButton,poButton;
     RequestManager manager;
-
     RecipesByIngredientsAdapter recipesByIngredientsAdapter;
     RecyclerView recipeRecyclerView;
     TextView titleText;
@@ -32,6 +33,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_recipe);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+                if (item.getItemId() == R.id.bottom_recipe) {
+                    return true;
+                } else if (item.getItemId() == R.id.bottom_kitchen) {
+                    startActivity(new Intent(getApplicationContext(), showPantryList.class));
+                    finish();
+                    return true;
+                } else if (item.getItemId() == R.id.bottom_profile) {
+                    startActivity(new Intent(getApplicationContext(), showProductOption.class));
+                    finish();
+                    return true;
+                }
+            return false;
+        });
+
         titleText = findViewById(R.id.titleText);
         titleText.setText("Recipe");
 
@@ -39,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.setTitle("Loading...");
 
         manager = new RequestManager(this);
-//        manager.getRecipesByIngredients(recipesByIngredientsResponseListener);
         manager.retrievePantryItems(new com.example.delicifind.Listeners.PantryItemsResponseListener() {
             @Override
             public void onPantryItemsRetrieved(String concatenatedIngredients) {
@@ -56,15 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
 
-        pButton = findViewById(R.id.showPantryBtn);
-        pButton.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, showPantryList.class));
-        });
-
-        poButton = findViewById(R.id.showProductBtn);
-        poButton.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, showProductOption.class));
-        });
+//        pButton = findViewById(R.id.showPantryBtn);
+//        pButton.setOnClickListener(view -> {
+//            startActivity(new Intent(MainActivity.this, showPantryList.class));
+//        });
+//
+//        poButton = findViewById(R.id.showProductBtn);
+//        poButton.setOnClickListener(view -> {
+//            startActivity(new Intent(MainActivity.this, showProductOption.class));
+//        });
 
     }
 
