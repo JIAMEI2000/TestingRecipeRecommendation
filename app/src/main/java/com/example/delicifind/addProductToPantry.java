@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -87,7 +88,9 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
             @Override
             public void onClick(View v) {
                 insertPantryData();
+                startActivity(new Intent(addProductToPantry.this, showPantryList.class));
             }
+
         });
 
     }

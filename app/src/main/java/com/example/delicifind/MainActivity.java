@@ -22,7 +22,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
-//    private Button pButton,poButton;
     RequestManager manager;
     RecipesByIngredientsAdapter recipesByIngredientsAdapter;
     RecyclerView recipeRecyclerView;
@@ -73,16 +72,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
-
-//        pButton = findViewById(R.id.showPantryBtn);
-//        pButton.setOnClickListener(view -> {
-//            startActivity(new Intent(MainActivity.this, showPantryList.class));
-//        });
-//
-//        poButton = findViewById(R.id.showProductBtn);
-//        poButton.setOnClickListener(view -> {
-//            startActivity(new Intent(MainActivity.this, showProductOption.class));
-//        });
 
     }
 

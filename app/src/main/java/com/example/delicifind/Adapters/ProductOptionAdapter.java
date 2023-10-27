@@ -89,4 +89,9 @@ public class ProductOptionAdapter extends RecyclerView.Adapter<ProductOptionAdap
 
         }
     }
+
+    public void updateData(ArrayList<ProductOption> filteredProducts) {
+        list = filteredProducts;
+        notifyDataSetChanged();
+    }
 }
