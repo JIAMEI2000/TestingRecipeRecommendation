@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -24,12 +25,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class addProductToPantry extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    TextView product,category,quantity,expiryDate;
+    TextView product,category,quantity,expiryDate,poUrl;
     Button decrementBtn,incrementBtn,datePickerBtn,addToPantryButton;
     DatabaseReference poDatabase;
-
+    CircleImageView poImage;
     TextView titleText;
     int count=1;
     @Override
@@ -48,14 +51,22 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         incrementBtn = findViewById(R.id.incrementButton);
         datePickerBtn = findViewById(R.id.datepickerButton);
         addToPantryButton = findViewById(R.id.addToPantryBtn);
+        poImage = findViewById(R.id.poImage);
 
         // Retrieve the product name and category from the intent
         String productName = getIntent().getStringExtra("product_name");
         String productCategory = getIntent().getStringExtra("category");
+        String productImageUrl = getIntent().getStringExtra("product_image_url");
 
         // Set the product name and category in the TextViews
         product.setText(productName);
         category.setText(productCategory);
+
+        Glide.with(this)
+                .load(productImageUrl)
+                .placeholder(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark) // You can set a placeholder image
+                .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal) // You can set an error image
+                .into(poImage);
 
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +118,14 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
 
     private void insertPantryData()
     {
+        String productImageUrl = getIntent().getStringExtra("product_image_url");
+
         Map<String,Object> map = new HashMap<>();
         map.put("pName",product.getText().toString());
         map.put("category",category.getText().toString());
         map.put("quantity",quantity.getText().toString());
         map.put("expiryDate",expiryDate.getText().toString());
+        map.put("URL", productImageUrl);
 
         poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry").push();
 

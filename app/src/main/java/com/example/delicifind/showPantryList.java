@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.delicifind.Adapters.PantryAdapter;
 import com.example.delicifind.Models.Pantry;
+import com.example.delicifind.Models.ProductOption;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class showPantryList extends AppCompatActivity {
 
@@ -31,8 +36,8 @@ public class showPantryList extends AppCompatActivity {
     DatabaseReference pantryDatabase;
     PantryAdapter pantryAdapter;
     TextView titleText;
-
     FloatingActionButton floatingActionButton;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,5 +98,65 @@ public class showPantryList extends AppCompatActivity {
 
             }
         });
+        // Define a list to hold categories
+        List<String> categories = new ArrayList<>();
+
+        spinner = findViewById(R.id.catSelectBox);
+
+        // Create an ArrayAdapter for the Spinner
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(categoryAdapter);
+
+        // Read categories from the database and add them to the list
+        pantryDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Pantry pantry = snapshot.getValue(Pantry.class);
+                    String category = pantry.getCategory();
+                    if (!categories.contains(category)) {
+                        categories.add(category);
+                    }
+                }
+                // Notify the adapter of the data change
+                categoryAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle any errors
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected category
+                String selectedCategory = categories.get(position);
+
+                // Filter and display products based on the selected category
+                displayProductsByCategory(selectedCategory);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void displayProductsByCategory(String selectedCategory) {
+        ArrayList<Pantry> filteredProducts = new ArrayList<>();
+
+        // Filter products by category
+        for (Pantry pantry : list) {
+            if (pantry.getCategory().equals(selectedCategory)) {
+                filteredProducts.add(pantry);
+            }
+        }
+
+        // Update the RecyclerView with the filtered products
+        pantryAdapter.updateData(filteredProducts);
     }
 }

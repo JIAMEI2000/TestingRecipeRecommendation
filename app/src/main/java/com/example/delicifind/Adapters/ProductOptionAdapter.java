@@ -26,7 +26,7 @@ public class ProductOptionAdapter extends RecyclerView.Adapter<ProductOptionAdap
     private OnAddButtonClickListener addButtonClickListener;
 
     public interface OnAddButtonClickListener {
-        void onAddButtonClick(String poName, String category);
+        void onAddButtonClick(String poName, String category, String URL);
     }
 
     public void setOnAddButtonClickListener(OnAddButtonClickListener listener) {
@@ -63,7 +63,7 @@ public class ProductOptionAdapter extends RecyclerView.Adapter<ProductOptionAdap
             @Override
             public void onClick(View view) {
                 if (addButtonClickListener != null) {
-                    addButtonClickListener.onAddButtonClick(productOption.getPoName(),productOption.getCategory());
+                    addButtonClickListener.onAddButtonClick(productOption.getPoName(),productOption.getCategory(),productOption.getURL());
                 }
             }
         });

@@ -7,13 +7,42 @@
 
     <include layout="@layout/toolbar" />
 
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="  Search..."
+        android:background="@drawable/custom_border"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Spinner
+            android:id="@+id/catSelectBox"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="200dp"
+            android:background="@drawable/custom_spinner_background"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pantryRV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"/>
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,13 +51,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:background="@drawable/custom_add_background"
         android:clickable="true"
         android:contentDescription="Add Item"
-        app:borderWidth="5dp"
         app:elevation="0dp"
         app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_add_24"
+        app:srcCompat="@drawable/baseline_add_circle_24"
+        android:background="@drawable/custom_floating_action_button"
         app:useCompatPadding="false" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

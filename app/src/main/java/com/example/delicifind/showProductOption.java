@@ -29,7 +29,7 @@ public class showProductOption extends AppCompatActivity {
 
     RecyclerView productRV;
     ArrayList<ProductOption> poList;
-    DatabaseReference poDatabase,catDatabase;
+    DatabaseReference poDatabase;
     ProductOptionAdapter poAdapter;
     ImageView addButton;
     TextView titleText;
@@ -57,11 +57,13 @@ public class showProductOption extends AppCompatActivity {
 
         poAdapter.setOnAddButtonClickListener(new ProductOptionAdapter.OnAddButtonClickListener() {
             @Override
-            public void onAddButtonClick(String poName, String category) {
+            public void onAddButtonClick(String poName, String category, String URL) {
                 // Handle the button click here
                 Intent intent = new Intent(showProductOption.this, addProductToPantry.class);
                 intent.putExtra("product_name", poName);
                 intent.putExtra("category", category);
+                intent.putExtra("product_image_url", URL);
+
                 startActivity(intent);
             }
         });

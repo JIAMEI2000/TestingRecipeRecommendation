@@ -21,11 +21,9 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
     Context context;
     List<RecipesByIngredientsApiResponse> list;
 
-
     public RecipesByIngredientsAdapter(Context context, List<RecipesByIngredientsApiResponse> list) {   //constructor
         this.context = context;
         this.list = list;
-
     }
 
     @NonNull
@@ -39,7 +37,7 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
         holder.title.setText(list.get(position).title);
         holder.title.setSelected(true);
         holder.usedCount.setText(list.get(position).usedIngredientCount+" Used Ingredient");
-        holder.missedCount.setText(list.get(position).missedIngredientCount+" Missed Ingredient");
+        holder.missedCount.setText(list.get(position).missedIngredientCount+" Missing Ingredient");
         Picasso.get().load(list.get(position).image).into(holder.foodImage);
 
     }
@@ -48,9 +46,6 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
     public int getItemCount() {
 
         return list.size();
-//        int itemCount = list.size();
-//        Log.d("Adapter", "Item Count: " + itemCount);
-//        return itemCount;
     }
 }
 class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
