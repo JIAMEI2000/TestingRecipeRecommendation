@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class showProductOption extends AppCompatActivity {
     ImageView addButton;
     TextView titleText;
     Spinner spinner;
+    Button createBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +133,14 @@ public class showProductOption extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        createBtn = findViewById(R.id.createButton);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(showProductOption.this, createNewProduct.class));
             }
         });
     }
