@@ -1,9 +1,6 @@
 package com.example.delicifind.Models;
 
-import com.google.firebase.database.Exclude;
-
 public class Pantry {
-
     String pName,quantity,expiryDate,category,URL;
 
     Pantry()
@@ -38,5 +35,4 @@ public class Pantry {
     public String getURL() {
         return URL;
     }
-
 }

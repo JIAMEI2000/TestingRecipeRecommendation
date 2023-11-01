@@ -1,17 +1,11 @@
 package com.example.delicifind.Adapters;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,16 +52,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
                 .circleCrop()
                 .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal)
                 .into(holder.pImage);
-
-        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -79,8 +64,6 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         TextView pName,quantity,expiryDate;
         CircleImageView pImage;
 
-        Button editBtn,deleteBtn;
-
         public MyViewHolder(@NonNull View pantryItemView) {
             super(pantryItemView);
 
@@ -88,8 +71,6 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
             quantity = pantryItemView.findViewById(R.id.displayQuantity);
             expiryDate = pantryItemView.findViewById(R.id.displayExpiryDate);
             pImage = pantryItemView.findViewById(R.id.pImage);
-            editBtn = pantryItemView.findViewById(R.id.editButton);
-            deleteBtn = pantryItemView.findViewById(R.id.deleteButton);
 
         }
     }
@@ -98,6 +79,4 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         list = filteredProducts;
         notifyDataSetChanged();
     }
-
-
 }
