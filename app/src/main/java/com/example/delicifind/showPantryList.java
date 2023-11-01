@@ -57,7 +57,7 @@ public class showPantryList extends AppCompatActivity {
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {
-                startActivity(new Intent(getApplicationContext(), showProductOption.class));
+                startActivity(new Intent(getApplicationContext(), showProfile.class));
                 finish();
                 return true;
             }

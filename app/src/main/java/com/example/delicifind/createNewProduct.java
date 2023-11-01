@@ -79,7 +79,7 @@ public class createNewProduct extends AppCompatActivity {
         selectBtn = findViewById(R.id.selectFromGalleryBtn);
 //        uploadBtn = findViewById(R.id.uploadBtn);
         imageView = findViewById(R.id.imageView);
-        progressIndicator = findViewById(R.id.progressBar);
+//        progressIndicator = findViewById(R.id.progressBar);
         catSelectBox = findViewById(R.id.catSelectBox);
         productInput = findViewById(R.id.productInput);
         saveBtn = findViewById(R.id.saveBtn);
