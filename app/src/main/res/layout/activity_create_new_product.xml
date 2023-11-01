@@ -37,12 +37,11 @@
         <EditText
             android:id="@+id/productInput"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:layout_marginLeft="15dp"
-            android:hint="  Enter product name"
             android:background="@drawable/custom_border"
-            android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:hint="  Enter product name" />
 
     <!-- Category -->
     <TextView
@@ -56,11 +55,12 @@
 
         <Spinner
             android:id="@+id/catSelectBox"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="200dp" />
+            android:layout_marginRight="150dp"
+            android:layout_weight="1"
+            android:minHeight="48dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,11 +71,11 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"/>
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_marginLeft="15dp"/>
+<!--    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_marginLeft="15dp"/>-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -96,13 +96,13 @@
             android:layout_height="wrap_content"
             android:text="Select Image"/>
 
-        <Button
-            android:id="@+id/uploadBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Image"
-            android:layout_marginLeft="10dp"
-            android:enabled="false"/>
+<!--        <Button-->
+<!--            android:id="@+id/uploadBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Upload Image"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:enabled="false"/>-->
     </LinearLayout>
 
         <LinearLayout
@@ -123,7 +123,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:enabled="false"/>
 
         </LinearLayout>
     </LinearLayout>
