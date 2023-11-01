@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".addProductToPantry">
 
     <include
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/toolbar">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="120dp"
@@ -124,12 +137,14 @@
         android:text="Pick a Date"
         android:layout_marginLeft="15dp"/>
 
-    <Button
-        android:id="@+id/addToPantryBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add To Kitchen"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"/>
+        <Button
+            android:id="@+id/addToPantryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add To Kitchen"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
-</LinearLayout>
+    </ScrollView>
+</RelativeLayout>
