@@ -31,7 +31,18 @@
         android:text="Product Name:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/productInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:hint="  Enter product name"
+            android:background="@drawable/custom_border"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
 
     <!-- Category -->
     <TextView
@@ -40,7 +51,16 @@
         android:text="Category:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
+
+        <Spinner
+            android:id="@+id/catSelectBox"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="200dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,12 +68,14 @@
         android:text="Upload Product Image:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"/>
+        android:id="@+id/progressBar"
+        android:layout_marginLeft="15dp"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -72,14 +94,15 @@
             android:id="@+id/selectFromGalleryBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select from Gallery"/>
+            android:text="Select Image"/>
 
         <Button
             android:id="@+id/uploadBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Image"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:enabled="false"/>
     </LinearLayout>
 
         <LinearLayout
@@ -104,9 +127,6 @@
 
         </LinearLayout>
     </LinearLayout>
-
-
-
 
     </ScrollView>
 </RelativeLayout>
