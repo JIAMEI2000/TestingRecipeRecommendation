@@ -46,8 +46,6 @@ public class showProductOption extends AppCompatActivity {
         titleText.setText("Product List");
 
         productRV = findViewById(R.id.productRV);
-        View productOptionView = getLayoutInflater().inflate(R.layout.product_option, null);
-        addButton = productOptionView.findViewById(R.id.addButton);
 
         poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("ProductOption");
         productRV.setHasFixedSize(true);

@@ -1,10 +1,12 @@
 package com.example.delicifind;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.delicifind.Adapters.PantryAdapter;
 import com.example.delicifind.Models.Pantry;
 import com.example.delicifind.Models.ProductOption;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +45,6 @@ public class showPantryList extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     Spinner spinner;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,7 @@ public class showPantryList extends AppCompatActivity {
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {
-                startActivity(new Intent(getApplicationContext(), showProductOption.class));
+                startActivity(new Intent(getApplicationContext(), showProfile.class));
                 finish();
                 return true;
             }
@@ -147,6 +151,8 @@ public class showPantryList extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void displayProductsByCategory(String selectedCategory) {
@@ -162,4 +168,6 @@ public class showPantryList extends AppCompatActivity {
         // Update the RecyclerView with the filtered products
         pantryAdapter.updateData(filteredProducts);
     }
+
+
 }
