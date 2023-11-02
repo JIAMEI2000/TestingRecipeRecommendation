@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
+import com.example.delicifind.Listeners.RecipeClickListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -86,12 +87,21 @@ public class MainActivity extends AppCompatActivity {
             recipeRecyclerView = findViewById(R.id.recycler_recipe);
             recipeRecyclerView.setHasFixedSize(true);
             recipeRecyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
-            recipesByIngredientsAdapter = new RecipesByIngredientsAdapter(MainActivity.this,response);
+            recipesByIngredientsAdapter = new RecipesByIngredientsAdapter(MainActivity.this,response,recipeClickListener);
             recipeRecyclerView.setAdapter(recipesByIngredientsAdapter);
         }
         @Override
         public void didError(String message) {
             Toast.makeText(MainActivity.this,message,Toast.LENGTH_LONG).show();
+        }
+    };
+
+    private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
+        @Override
+        public void onRecipeClicked(String id) {
+//            Toast.makeText(MainActivity.this, id, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this,showRecipeDetails.class)
+                    .putExtra("id",id));
         }
     };
 }

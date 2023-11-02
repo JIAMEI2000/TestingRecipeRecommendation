@@ -17,6 +17,7 @@
             android:id="@+id/textView_title"
             android:text="Dish Name"
             android:singleLine="true"
+            android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:textStyle="bold"
