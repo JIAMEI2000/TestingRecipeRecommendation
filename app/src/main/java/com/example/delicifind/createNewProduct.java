@@ -94,22 +94,16 @@ public class createNewProduct extends AppCompatActivity {
             }
         });
 
-//        uploadBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                uploadImage(image);
-//            }
-//        });
 
         // Create an ArrayAdapter for the Spinner with predefined categories
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoryAdapter.add("Vegetables");
-        categoryAdapter.add("Animal Products");
         categoryAdapter.add("Meat");
         categoryAdapter.add("Seafood");
         categoryAdapter.add("Fruits");
         categoryAdapter.add("Dairy Products");
+        categoryAdapter.add("Dry Staples");
         catSelectBox.setAdapter(categoryAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("ProductOption");
@@ -136,26 +130,6 @@ public class createNewProduct extends AppCompatActivity {
         });
     }
 
-//    private void uploadImage(Uri image){
-//        StorageReference reference = storageReference.child("images/"+ UUID.randomUUID().toString());
-//        reference.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(createNewProduct.this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(createNewProduct.this, "There was an error while uploading image", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                progressIndicator.setMax(Math.toIntExact(snapshot.getTotalByteCount()));
-//                progressIndicator.setProgress(Math.toIntExact(snapshot.getBytesTransferred()));
-//            }
-//        });
-//    }
 
     private void InsertProductInfo(Uri image, String productName, String category) {
         StorageReference reference = storageReference.child("images/" + UUID.randomUUID().toString());

@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product Name:"
+        android:text="Ingredient Name:"
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_marginLeft="15dp"/>
@@ -46,7 +46,7 @@
         android:id="@+id/productText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product Name"
+        android:text="Ingredient Name"
         android:textSize="25dp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"/>
@@ -113,30 +113,57 @@
 
     </LinearLayout>
 
-    <!-- Expiry Date -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Expiry Date:"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_marginLeft="15dp"/>
+<!--    &lt;!&ndash; Purchased Date &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Purchased Date:"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_marginLeft="15dp"/>-->
 
-    <!-- Display Expiry Date -->
-    <TextView
-        android:id="@+id/displayExpiryDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="No selected date"
-        android:layout_marginLeft="15dp"/>
+<!--        &lt;!&ndash; Display Purchased Date &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/displayPuchasedDate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="25dp"-->
+<!--            android:text="No selected date"-->
+<!--            android:layout_marginLeft="15dp"/>-->
 
-    <Button
-        android:id="@+id/datepickerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick a Date"
-        android:layout_marginLeft="15dp"/>
+<!--        <Button-->
+<!--            android:id="@+id/datepickerButton1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Pick a Date"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginBottom="15dp"/>-->
+
+        <!-- Expiry Date -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiry Date:"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"/>
+
+        <!-- Display Expiry Date -->
+        <TextView
+            android:id="@+id/displayExpiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="No selected date"
+            android:layout_marginLeft="15dp"/>
+
+        <Button
+            android:id="@+id/datepickerButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a Date"
+            android:layout_marginLeft="15dp"/>
+
 
         <Button
             android:id="@+id/addToPantryBtn"

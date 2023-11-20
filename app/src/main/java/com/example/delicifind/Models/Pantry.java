@@ -24,6 +24,10 @@ public class Pantry {
         return quantity;
     }
 
+//    public String getPurchasedDate() {
+//        return purchasedDate;
+//    }
+
     public String getExpiryDate() {
         return expiryDate;
     }

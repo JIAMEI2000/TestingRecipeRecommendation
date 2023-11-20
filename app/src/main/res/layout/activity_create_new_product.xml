@@ -28,20 +28,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Product Name:"
+        android:text="Ingredient Name:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"/>
 
         <EditText
             android:id="@+id/productInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginLeft="15dp"
             android:background="@drawable/custom_border"
             android:focusableInTouchMode="true"
-            android:hint="  Enter product name" />
+            android:hint="  Enter ingredient name" />
 
     <!-- Category -->
     <TextView
@@ -50,14 +48,12 @@
         android:text="Category:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"/>
 
         <Spinner
             android:id="@+id/catSelectBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:layout_marginRight="150dp"
             android:layout_weight="1"
             android:minHeight="48dp" />
@@ -65,10 +61,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload Product Image:"
+        android:text="Upload Ingredient Image:"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"/>
 
 <!--    <com.google.android.material.progressindicator.LinearProgressIndicator-->
@@ -81,14 +76,12 @@
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginLeft="15dp"
         app:srcCompat="@drawable/baseline_image_24" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="15dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/selectFromGalleryBtn"

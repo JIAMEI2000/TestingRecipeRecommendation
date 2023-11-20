@@ -43,7 +43,7 @@ public class showProductOption extends AppCompatActivity {
         setContentView(R.layout.activity_show_product_option);
 
         titleText = findViewById(R.id.titleText);
-        titleText.setText("Product List");
+        titleText.setText("Available Ingredients List");
 
         productRV = findViewById(R.id.productRV);
         View productOptionView = getLayoutInflater().inflate(R.layout.product_option, null);

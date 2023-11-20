@@ -37,6 +37,31 @@
                 android:textSize="22sp"
                 android:textColor="@color/black" />
 
+<!--            &lt;!&ndash; Purchased Date Row &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center_vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/purchasedDate_title"-->
+<!--                    android:text="Purchased Date: "-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/purchasedDate"-->
+<!--                    android:text="Purchased Date"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--            </LinearLayout>-->
+
             <!-- Expiry Date Row -->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -87,23 +112,35 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end|bottom"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/editButton"
+                    android:src="@drawable/baseline_edit_24"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/deleteButton"
+                    android:src="@drawable/baseline_delete_24"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/editButton"
-            android:src="@drawable/baseline_edit_24"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/deleteButton"
-            android:src="@drawable/baseline_delete_24"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

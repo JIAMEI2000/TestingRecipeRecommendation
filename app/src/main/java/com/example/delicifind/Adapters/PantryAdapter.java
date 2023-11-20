@@ -44,6 +44,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         Pantry pantry = list.get(position);
         holder.pName.setText(pantry.getpName());
         holder.quantity.setText(pantry.getQuantity());
+//        holder.purchasedDate.setText(pantry.getPurchasedDate());
         holder.expiryDate.setText(pantry.getExpiryDate());
 
         Glide.with(holder.pImage.getContext())
@@ -61,7 +62,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView pName,quantity,expiryDate;
+        TextView pName,quantity,purchasedDate,expiryDate;
         CircleImageView pImage;
 
         public MyViewHolder(@NonNull View pantryItemView) {
@@ -69,6 +70,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
 
             pName = pantryItemView.findViewById(R.id.pName);
             quantity = pantryItemView.findViewById(R.id.displayQuantity);
+//            purchasedDate = pantryItemView.findViewById(R.id.displayPuchasedDate);
             expiryDate = pantryItemView.findViewById(R.id.displayExpiryDate);
             pImage = pantryItemView.findViewById(R.id.pImage);
 
