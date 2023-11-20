@@ -34,31 +34,31 @@
             android:scaleType="centerCrop"
             android:layout_margin="8dp"/>
 
-        <TextView
-            android:id="@+id/textView_usedCount"
-            android:text="Used Ingredient Count"
-            android:singleLine="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:textStyle="bold"
-            android:textColor="@color/purple_700"
-            android:textSize="22sp"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView_usedCount"-->
+<!--            android:text="Used Ingredient Count"-->
+<!--            android:singleLine="true"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"-->
+<!--            android:scrollHorizontally="true"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/purple_700"-->
+<!--            android:textSize="22sp"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
 
-        <TextView
-            android:id="@+id/textView_MissedCount"
-            android:text="Missing Ingredient Count"
-            android:singleLine="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:textStyle="bold"
-            android:textColor="@color/purple_700"
-            android:textSize="22sp"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView_MissedCount"-->
+<!--            android:text="Missing Ingredient Count"-->
+<!--            android:singleLine="true"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"-->
+<!--            android:scrollHorizontally="true"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/purple_700"-->
+<!--            android:textSize="22sp"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
 
     </LinearLayout>
 

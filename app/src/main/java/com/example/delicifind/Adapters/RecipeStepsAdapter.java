@@ -14,44 +14,41 @@ import com.example.delicifind.R;
 
 import java.util.List;
 
-public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsViewHolder>{
+public class RecipeStepsAdapter extends RecyclerView.Adapter<RecipeStepsViewHolder> {
+    private final List<Step> steps;
+    private final Context context;
 
-    Context context;
-
-    List<Step> stepList;
-
-    public RecipeStepsAdapter(Context context, List<Step> stepList) {
+    public RecipeStepsAdapter(Context context, List<Step> steps) {
         this.context = context;
-        this.stepList = stepList;
+        this.steps = steps;
     }
 
     @NonNull
     @Override
     public RecipeStepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RecipeStepsViewHolder(LayoutInflater.from(context).inflate(R.layout.recipe_instructions,parent,false));
+        View view = LayoutInflater.from(context).inflate(R.layout.recipe_instructions, parent, false);
+        return new RecipeStepsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecipeStepsViewHolder holder, int position) {
-        holder.stepsNumber.setText(stepList.get(position).number);
-        holder.stepsNumber.setSelected(true);
-        holder.recipeSteps.setText(stepList.get(position).step);
-        holder.recipeSteps.setSelected(true);
+        Step step = steps.get(position);
+        holder.stepNumberTextView.setText("Step " + step.number);
+        holder.recipeStepsTextView.setText(step.step);
     }
 
     @Override
     public int getItemCount() {
-        return stepList.size();
+        return steps.size();
     }
 }
 
-class RecipeStepsViewHolder extends RecyclerView.ViewHolder{
+class RecipeStepsViewHolder extends RecyclerView.ViewHolder {
+    TextView stepNumberTextView, recipeStepsTextView;
 
-    TextView stepsNumber, recipeSteps;
     public RecipeStepsViewHolder(@NonNull View itemView) {
         super(itemView);
-        stepsNumber = itemView.findViewById(R.id.stepsNumber);
-        recipeSteps = itemView.findViewById(R.id.recipeSteps);
-
+        stepNumberTextView = itemView.findViewById(R.id.stepsNumber);
+        recipeStepsTextView = itemView.findViewById(R.id.recipeSteps);
     }
 }

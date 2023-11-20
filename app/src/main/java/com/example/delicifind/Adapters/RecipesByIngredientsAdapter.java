@@ -39,8 +39,8 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
     public void onBindViewHolder(@NonNull RecipesByIngredientsViewHolder holder, int position) {
         holder.title.setText(list.get(position).title);
         holder.title.setSelected(true);
-        holder.usedCount.setText(list.get(position).usedIngredientCount+" Used Ingredient");
-        holder.missedCount.setText(list.get(position).missedIngredientCount+" Missing Ingredient");
+//        holder.usedCount.setText(list.get(position).usedIngredientCount+" Used Ingredient");
+//        holder.missedCount.setText(list.get(position).missedIngredientCount+" Missing Ingredient");
         Picasso.get().load(list.get(position).image).into(holder.foodImage);
 
         holder.recipe_list_container.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +66,8 @@ class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         recipe_list_container = itemView.findViewById(R.id.recipe_list_container);
         title = itemView.findViewById(R.id.textView_title);
-        usedCount = itemView.findViewById(R.id.textView_usedCount);
-        missedCount = itemView.findViewById(R.id.textView_MissedCount);
+//        usedCount = itemView.findViewById(R.id.textView_usedCount);
+//        missedCount = itemView.findViewById(R.id.textView_MissedCount);
         foodImage = itemView.findViewById(R.id.imageView_food);
 
     }

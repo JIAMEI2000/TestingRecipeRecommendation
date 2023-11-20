@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class showRecipeDetails extends AppCompatActivity {
     int id;
     TextView titleText, recipeName, recipeSource;
     ImageView recipeImage;
-    RecyclerView rvIngredients ,rvSteps;
+    RecyclerView rvIngredients, rvSteps;
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsAdapter ingredientsAdapter;
@@ -37,7 +38,7 @@ public class showRecipeDetails extends AppCompatActivity {
         setContentView(R.layout.activity_show_recipe_details);
 
         titleText = findViewById(R.id.titleText);
-        titleText.setText("RecipeDetails");
+        titleText.setText("Recipe Details");
 
         findViews();
 
@@ -71,10 +72,10 @@ public class showRecipeDetails extends AppCompatActivity {
             ingredientsAdapter = new IngredientsAdapter(showRecipeDetails.this,response.extendedIngredients);
             rvIngredients.setAdapter(ingredientsAdapter);
 
-//            rvSteps.setHasFixedSize(true);
-//            rvSteps.setLayoutManager(new LinearLayoutManager(showRecipeDetails.this,LinearLayoutManager.VERTICAL,false));
-//            recipeStepsAdapter = new RecipeStepsAdapter(showRecipeDetails.this, extractStepsFromInstructions(response.analyzedInstructions));
-//            rvSteps.setAdapter(recipeStepsAdapter);
+            rvSteps.setHasFixedSize(true);
+            rvSteps.setLayoutManager(new LinearLayoutManager(showRecipeDetails.this,LinearLayoutManager.VERTICAL,false));
+            recipeStepsAdapter = new RecipeStepsAdapter(showRecipeDetails.this, extractStepsFromInstructions(response.analyzedInstructions));
+            rvSteps.setAdapter(recipeStepsAdapter);
         }
 
         @Override
@@ -83,15 +84,14 @@ public class showRecipeDetails extends AppCompatActivity {
         }
     };
 
-    private List<Step> extractStepsFromInstructions(List<AnalyzedInstruction> instructions) {
+    private List<Step> extractStepsFromInstructions(ArrayList<AnalyzedInstruction> analyzedInstructions) {
         List<Step> steps = new ArrayList<>();
-
-        for (AnalyzedInstruction instruction : instructions) {
-            if (instruction.steps != null) {
+        if (analyzedInstructions != null && analyzedInstructions.size() > 0) {
+            AnalyzedInstruction instruction = analyzedInstructions.get(0); // Assuming there's only one set of instructions
+            if (instruction != null && instruction.steps != null) {
                 steps.addAll(instruction.steps);
             }
         }
-
         return steps;
     }
 
