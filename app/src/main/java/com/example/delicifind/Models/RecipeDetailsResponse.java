@@ -40,4 +40,11 @@ public class RecipeDetailsResponse {
     public ArrayList<AnalyzedInstruction> analyzedInstructions;
     public Object originalId;
     public String spoonacularSourceUrl;
+
+    public static RecipesByIngredientsApiResponse toRecipesByIngredientsApiResponse(RecipeDetailsResponse details) {
+        RecipesByIngredientsApiResponse result = new RecipesByIngredientsApiResponse();
+
+        result.readyInMinutes = details.readyInMinutes;
+        return result;
+    }
 }

@@ -12,8 +12,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delicifind.Listeners.RecipeClickListener;
+import com.example.delicifind.Listeners.RecipeDetailsCallback;
+import com.example.delicifind.Listeners.RecipeDetailsListener;
+import com.example.delicifind.Models.RecipeDetailsResponse;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.example.delicifind.R;
+import com.example.delicifind.RequestManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,6 +46,23 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
 //        holder.usedCount.setText(list.get(position).usedIngredientCount+" Used Ingredient");
 //        holder.missedCount.setText(list.get(position).missedIngredientCount+" Missing Ingredient");
         Picasso.get().load(list.get(position).image).into(holder.foodImage);
+        // Create a callback instance
+        RecipeDetailsCallback detailsCallback = new RecipeDetailsCallback() {
+            @Override
+            public void onDetailsFetched(RecipeDetailsResponse detailsResponse) {
+                // Update the UI or perform any other actions with the fetched detailsResponse
+                int readyInMinutes = detailsResponse != null ? detailsResponse.readyInMinutes : 0;
+                holder.readyInMinutes.setText("Ready in " + readyInMinutes + " minutes");
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                // Handle the error, e.g., display an error message
+            }
+        };
+
+        // Call the method with the callback
+        getDetailsResponseForItem(list.get(position).id, detailsCallback);
 
         holder.recipe_list_container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +70,7 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
                 listener.onRecipeClicked(String.valueOf(list.get(holder.getAdapterPosition()).id));
             }
         });
+
     }
 
     @Override
@@ -56,10 +78,34 @@ public class RecipesByIngredientsAdapter extends RecyclerView.Adapter<RecipesByI
 
         return list.size();
     }
+
+    // Helper method to fetch RecipeDetailsResponse for a given recipe ID
+    private void getDetailsResponseForItem(int recipeId, RecipeDetailsCallback callback) {
+        // Assuming you have an instance of RequestManager
+        RequestManager manager = new RequestManager(context);
+
+        // Call the getRecipeDetails method to fetch the details for the given recipeId
+        manager.getRecipeDetails(new RecipeDetailsListener() {
+            @Override
+            public void didFetch(RecipeDetailsResponse response, String message) {
+                // Pass the result to the callback
+                callback.onDetailsFetched(response);
+            }
+
+            @Override
+            public void didError(String message) {
+                // Pass the error message to the callback
+                callback.onError(message);
+            }
+        }, recipeId);
+    }
 }
+
+
+
 class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
     CardView recipe_list_container;
-    TextView title, usedCount, missedCount;
+    TextView title, usedCount, missedCount, readyInMinutes;
     ImageView foodImage;
 
     public RecipesByIngredientsViewHolder(@NonNull View itemView) {
@@ -69,6 +115,7 @@ class RecipesByIngredientsViewHolder extends RecyclerView.ViewHolder{
 //        usedCount = itemView.findViewById(R.id.textView_usedCount);
 //        missedCount = itemView.findViewById(R.id.textView_MissedCount);
         foodImage = itemView.findViewById(R.id.imageView_food);
+        readyInMinutes = itemView.findViewById(R.id.textView_readyInMinutes);
 
     }
 }

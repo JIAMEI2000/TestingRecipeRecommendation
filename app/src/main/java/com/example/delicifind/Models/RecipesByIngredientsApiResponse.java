@@ -14,5 +14,6 @@ public class RecipesByIngredientsApiResponse{
     public ArrayList<UsedIngredient> usedIngredients;
     public ArrayList<Object> unusedIngredients;
     public int likes;
+    public int readyInMinutes;
 
 }
