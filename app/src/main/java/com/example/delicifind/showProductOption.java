@@ -57,19 +57,6 @@ public class showProductOption extends AppCompatActivity {
         poAdapter = new ProductOptionAdapter(this, poList);
         productRV.setAdapter(poAdapter);
 
-        poAdapter.setOnAddButtonClickListener(new ProductOptionAdapter.OnAddButtonClickListener() {
-            @Override
-            public void onAddButtonClick(String poName, String category, String URL) {
-                // Handle the button click here
-                Intent intent = new Intent(showProductOption.this, addProductToPantry.class);
-                intent.putExtra("product_name", poName);
-                intent.putExtra("category", category);
-                intent.putExtra("product_image_url", URL);
-
-                startActivity(intent);
-            }
-        });
-
         //add product to kitchen
         poDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,7 +69,6 @@ public class showProductOption extends AppCompatActivity {
                 }
                 poAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -120,6 +106,7 @@ public class showProductOption extends AppCompatActivity {
             }
         });
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -133,6 +120,19 @@ public class showProductOption extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        poAdapter.setOnAddButtonClickListener(new ProductOptionAdapter.OnAddButtonClickListener() {
+            @Override
+            public void onAddButtonClick(String poName, String category, String URL) {
+                // Handle the button click here
+                Intent intent = new Intent(showProductOption.this, addProductToPantry.class);
+                intent.putExtra("product_name", poName);
+                intent.putExtra("category", category);
+                intent.putExtra("product_image_url", URL);
+
+                startActivity(intent);
             }
         });
 
