@@ -115,6 +115,8 @@ public class showPantryList extends AppCompatActivity {
         pantryDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                categories.add("All");
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Pantry pantry = snapshot.getValue(Pantry.class);
                     String category = pantry.getCategory();
@@ -138,8 +140,14 @@ public class showPantryList extends AppCompatActivity {
                 // Get the selected category
                 String selectedCategory = categories.get(position);
 
-                // Filter and display products based on the selected category
-                displayProductsByCategory(selectedCategory);
+                // Check if "All" is selected
+                if ("All".equals(selectedCategory)) {
+                    // Display all pantry items
+                    pantryAdapter.updateData(list);
+                } else {
+                    // Filter and display products based on the selected category
+                    displayPantryByCategory(selectedCategory);
+                }
             }
 
             @Override
@@ -149,17 +157,17 @@ public class showPantryList extends AppCompatActivity {
         });
     }
 
-    private void displayProductsByCategory(String selectedCategory) {
+    private void displayPantryByCategory(String selectedCategory) {
         ArrayList<Pantry> filteredProducts = new ArrayList<>();
 
-        // Filter products by category
+        // Filter pantry by category
         for (Pantry pantry : list) {
             if (pantry.getCategory().equals(selectedCategory)) {
                 filteredProducts.add(pantry);
             }
         }
 
-        // Update the RecyclerView with the filtered products
+        // Update the RecyclerView with the filtered pantry
         pantryAdapter.updateData(filteredProducts);
     }
 }

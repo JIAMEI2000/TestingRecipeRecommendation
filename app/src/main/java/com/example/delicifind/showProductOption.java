@@ -89,6 +89,8 @@ public class showProductOption extends AppCompatActivity {
         poDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                categories.add("All");
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     ProductOption product = snapshot.getValue(ProductOption.class);
                     String category = product.getCategory();
@@ -113,8 +115,14 @@ public class showProductOption extends AppCompatActivity {
                 // Get the selected category
                 String selectedCategory = categories.get(position);
 
-                // Filter and display products based on the selected category
-                displayProductsByCategory(selectedCategory);
+                // Check if "All" is selected
+                if ("All".equals(selectedCategory)) {
+                    // Display all pantry items
+                    poAdapter.updateData(poList);
+                } else {
+                    // Filter and display products based on the selected category
+                    displayProductsByCategory(selectedCategory);
+                }
             }
 
             @Override
