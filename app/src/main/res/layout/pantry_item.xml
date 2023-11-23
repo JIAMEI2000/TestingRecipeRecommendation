@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/purchasedDate_title"
-                    android:text="Purchased Date: "
+                    android:text="Purchased on: "
                     android:textSize="15sp"
                     android:textColor="@color/black" />
 
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/expiryDate_title"
-                    android:text="Expiry Date: "
+                    android:text="Expired on: "
                     android:textSize="15sp"
                     android:textColor="@color/black" />
 

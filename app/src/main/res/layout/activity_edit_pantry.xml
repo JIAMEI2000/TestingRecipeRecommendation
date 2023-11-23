@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".editPantry">
+
+<!--    <include-->
+<!--        layout="@layout/toolbar"-->
+<!--        android:id="@+id/toolbar"/>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@+id/toolbar">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/poImage"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/black"/>
+
+            <!-- Product Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient Name:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/productText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient Name"
+                android:textSize="25dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"/>
+
+            <!-- Category -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/categoryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="25dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"/>
+
+            <!-- Quantity -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp">
+
+                <Button
+                    android:id="@+id/decrementButton"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="-"/>
+
+                <TextView
+                    android:id="@+id/quantityText"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"/>
+
+                <Button
+                    android:id="@+id/incrementButton"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="+"/>
+
+            </LinearLayout>
+
+            <!-- Purchased Date -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purchased Date:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <!-- Display Purchased Date -->
+            <TextView
+                android:id="@+id/displayPurchasedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="No selected date"
+                android:layout_marginLeft="15dp"/>
+
+            <Button
+                android:id="@+id/datepickerButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick a Date"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <!-- Expiry Date -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expiry Date:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <!-- Display Expiry Date -->
+            <TextView
+                android:id="@+id/displayExpiryDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="No selected date"
+                android:layout_marginLeft="15dp"/>
+
+            <Button
+                android:id="@+id/datepickerButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick a Date"
+                android:layout_marginLeft="15dp"/>
+
+
+            <Button
+                android:id="@+id/updateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

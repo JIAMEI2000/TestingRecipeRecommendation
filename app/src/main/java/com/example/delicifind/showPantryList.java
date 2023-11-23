@@ -88,9 +88,10 @@ public class showPantryList extends AppCompatActivity {
         pantryDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Pantry pantry = dataSnapshot.getValue(Pantry.class);
+                    pantry.setKey(dataSnapshot.getKey());
                     list.add(pantry);
                 }
                 pantryAdapter.notifyDataSetChanged();

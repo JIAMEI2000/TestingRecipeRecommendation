@@ -2,10 +2,8 @@ package com.example.delicifind;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,30 +19,25 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class addProductToPantry extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class editPantry extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
-    TextView product,category,quantity,expiryDate,purchasedDate;
-    Button decrementBtn,incrementBtn,expiryDatePickerBtn, purchasedDatePickerBtn,addToPantryButton;
-    DatabaseReference poDatabase;
-    CircleImageView poImage;
-    TextView titleText;
+    TextView ingredient, category, quantity, expiryDate, purchasedDate;
+    Button decrementBtn, incrementBtn, expiryDatePickerBtn, purchasedDatePickerBtn, updateButton;
+    CircleImageView pantryImage;
     DatePickerFragment purchasedDatePicker, expiryDatePicker;
-    int count=1;
+    int count = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product_to_pantry);
+        setContentView(R.layout.activity_edit_pantry);
 
-        titleText = findViewById(R.id.titleText);
-        titleText.setText("Add Ingredient To Kitchen");
-
-        product = findViewById(R.id.productText);
+        ingredient = findViewById(R.id.productText);
         category = findViewById(R.id.categoryText);
         quantity = findViewById(R.id.quantityText);
         purchasedDate = findViewById(R.id.displayPurchasedDate);
@@ -53,40 +46,47 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         incrementBtn = findViewById(R.id.incrementButton);
         purchasedDatePickerBtn = findViewById(R.id.datepickerButton1);
         expiryDatePickerBtn = findViewById(R.id.datepickerButton2);
-        addToPantryButton = findViewById(R.id.addToPantryBtn);
-        poImage = findViewById(R.id.poImage);
+        updateButton = findViewById(R.id.updateBtn);
+        pantryImage = findViewById(R.id.poImage);
 
-        // Retrieve the product name and category from the intent
-        String productName = getIntent().getStringExtra("product_name");
-        String productCategory = getIntent().getStringExtra("category");
-        String productImageUrl = getIntent().getStringExtra("product_image_url");
+        // Retrieve the ingredient details from the intent
+        String key = getIntent().getStringExtra("key");
+        String imageURL = getIntent().getStringExtra("imageURL");
+        String ingredientName = getIntent().getStringExtra("ingredientName");
+        String categoryName = getIntent().getStringExtra("category");
+        String quantityNum = getIntent().getStringExtra("quantity");
+        String purchasedDateOn = getIntent().getStringExtra("purchasedDate");
+        String expiryDateOn = getIntent().getStringExtra("expiryDate");
 
         // Set the product name and category in the TextViews
-        product.setText(productName);
-        category.setText(productCategory);
+//        key.setText(key);
+        ingredient.setText(ingredientName);
+        category.setText(categoryName);
+        quantity.setText(quantityNum);
+        purchasedDate.setText(purchasedDateOn);
+        expiryDate.setText(expiryDateOn);
 
         Glide.with(this)
-                .load(productImageUrl)
+                .load(imageURL)
                 .placeholder(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark) // You can set a placeholder image
                 .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal) // You can set an error image
-                .into(poImage);
-
+                .into(pantryImage);
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count++;
-                quantity.setText(""+count);
+                quantity.setText("" + count);
             }
         });
 
         decrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count<=1)
-                    count=1;
+                if (count <= 1)
+                    count = 1;
                 else
                     count--;
-                quantity.setText(""+count);
+                quantity.setText("" + count);
             }
         });
 
@@ -106,15 +106,12 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
             }
         });
 
-        addToPantryButton.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertPantryData();
-                startActivity(new Intent(addProductToPantry.this, showPantryList.class));
+                updatePantryData();
             }
-
         });
-
     }
 
     @Override
@@ -133,35 +130,44 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         }
     }
 
-    private void insertPantryData()
-    {
-        String productImageUrl = getIntent().getStringExtra("product_image_url");
+    private void updatePantryData() {
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("pName",product.getText().toString());
-        map.put("category",category.getText().toString());
-        map.put("quantity",quantity.getText().toString());
-        map.put("purchasedDate",purchasedDate.getText().toString());
-        map.put("expiryDate",expiryDate.getText().toString());
-        map.put("URL", productImageUrl);
+        String key = getIntent().getStringExtra("key");
+        String imageURL = getIntent().getStringExtra("imageURL");
+        String ingredientName = getIntent().getStringExtra("ingredientName");
+        String categoryName = getIntent().getStringExtra("category");
 
-        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry").push();
+        // Initialize the DatabaseReference
+        DatabaseReference pantryDatabase = FirebaseDatabase.getInstance().getReference().child("Recipe").child("Pantry");
 
-        poDatabase.setValue(map)
+        // Retrieve the updated data
+        String updatedQuantityNum = quantity.getText().toString();
+        String updatedPurchasedDateOn = purchasedDate.getText().toString();
+        String updatedExpiryDateOn = expiryDate.getText().toString();
+
+        // Create a map for the updated data
+        Map<String, Object> updatedData = new HashMap<>();
+        updatedData.put("pName", ingredientName);
+        updatedData.put("category", categoryName);
+        updatedData.put("quantity", updatedQuantityNum);
+        updatedData.put("purchasedDate", updatedPurchasedDateOn);
+        updatedData.put("expiryDate", updatedExpiryDateOn);
+        updatedData.put("URL", imageURL);
+
+        // Update the data in the database
+        pantryDatabase.child(key).updateChildren(updatedData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(addProductToPantry.this, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(editPantry.this, "Data Updated Successfully!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(addProductToPantry.this, "Error while Insertion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(editPantry.this, "Error while Updating", Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
-
-
 }
