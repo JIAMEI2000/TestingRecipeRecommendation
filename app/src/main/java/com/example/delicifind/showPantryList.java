@@ -2,6 +2,7 @@ package com.example.delicifind;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ public class showPantryList extends AppCompatActivity {
     TextView titleText;
     FloatingActionButton floatingActionButton;
     Spinner spinner;
-
+    SearchView searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +157,39 @@ public class showPantryList extends AppCompatActivity {
 
             }
         });
+
+        searchBar = findViewById(R.id.searchBar);
+        // Set the focus change listener to enable focus when the user clicks on the SearchView
+        searchBar.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                searchBar.setFocusable(true);
+                searchBar.setFocusableInTouchMode(true);
+            }
+        });
+        searchBar.clearFocus();
+
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList(newText);
+                return false;
+            }
+        });
+    }
+
+    private void searchList(String text){
+        ArrayList<Pantry> searchList =new ArrayList<>();
+        for(Pantry pantry:list){
+            if(pantry.getpName().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(pantry);
+            }
+        }
+        pantryAdapter.searchSavedIngredients(searchList);
     }
 
     private void displayPantryByCategory(String selectedCategory) {

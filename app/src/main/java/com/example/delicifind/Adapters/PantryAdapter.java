@@ -123,6 +123,11 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         return list.size();
     }
 
+    public void searchSavedIngredients(ArrayList<Pantry> searchList){
+        list = searchList;
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView pName,quantity,purchasedDate,expiryDate;

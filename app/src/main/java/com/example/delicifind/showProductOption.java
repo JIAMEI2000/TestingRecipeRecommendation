@@ -2,6 +2,7 @@ package com.example.delicifind;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.delicifind.Adapters.ProductOptionAdapter;
+import com.example.delicifind.Models.Pantry;
 import com.example.delicifind.Models.ProductOption;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +38,7 @@ public class showProductOption extends AppCompatActivity {
     TextView titleText;
     Spinner spinner;
     Button createBtn;
+    SearchView searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +154,37 @@ public class showProductOption extends AppCompatActivity {
                 startActivity(new Intent(showProductOption.this, createNewProduct.class));
             }
         });
+        searchBar = findViewById(R.id.searchBar);
+        // Set the focus change listener to enable focus when the user clicks on the SearchView
+        searchBar.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                searchBar.setFocusable(true);
+                searchBar.setFocusableInTouchMode(true);
+            }
+        });
+        searchBar.clearFocus();
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList(newText);
+                return false;
+            }
+        });
+    }
+
+    private void searchList(String text){
+        ArrayList<ProductOption> searchList =new ArrayList<>();
+        for(ProductOption productOption:poList){
+            if(productOption.getPoName().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(productOption);
+            }
+        }
+        poAdapter.searchAvailableIngredients(searchList);
     }
 
     private void displayProductsByCategory(String selectedCategory) {
