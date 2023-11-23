@@ -47,11 +47,11 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         product = findViewById(R.id.productText);
         category = findViewById(R.id.categoryText);
         quantity = findViewById(R.id.quantityText);
-//        purchasedDate = findViewById(R.id.displayPuchasedDate);
+        purchasedDate = findViewById(R.id.displayPurchasedDate);
         expiryDate = findViewById(R.id.displayExpiryDate);
         decrementBtn = findViewById(R.id.decrementButton);
         incrementBtn = findViewById(R.id.incrementButton);
-//        purchasedDatePickerBtn = findViewById(R.id.datepickerButton1);
+        purchasedDatePickerBtn = findViewById(R.id.datepickerButton1);
         expiryDatePickerBtn = findViewById(R.id.datepickerButton2);
         addToPantryButton = findViewById(R.id.addToPantryBtn);
         poImage = findViewById(R.id.poImage);
@@ -90,14 +90,14 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
             }
         });
 
-//        purchasedDatePicker = new DatePickerFragment();
+        purchasedDatePicker = new DatePickerFragment();
         expiryDatePicker = new DatePickerFragment();
-//        purchasedDatePickerBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                purchasedDatePicker.show(getSupportFragmentManager(), "purchasedDatePicker");
-//            }
-//        });
+        purchasedDatePickerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                purchasedDatePicker.show(getSupportFragmentManager(), "purchasedDatePicker");
+            }
+        });
 
         expiryDatePickerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,8 +124,13 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        expiryDate.setText(currentDateString);
-//        purchasedDate.setText(currentDateString);
+
+        // The tag is used to distinguish between purchased and expiry date pickers
+        if (getSupportFragmentManager().findFragmentByTag("purchasedDatePicker") != null) {
+            purchasedDate.setText(currentDateString);
+        } else if (getSupportFragmentManager().findFragmentByTag("expiryDatePicker") != null) {
+            expiryDate.setText(currentDateString);
+        }
     }
 
     private void insertPantryData()
@@ -136,7 +141,7 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         map.put("pName",product.getText().toString());
         map.put("category",category.getText().toString());
         map.put("quantity",quantity.getText().toString());
-//        map.put("purchasedDate",expiryDate.getText().toString());
+        map.put("purchasedDate",purchasedDate.getText().toString());
         map.put("expiryDate",expiryDate.getText().toString());
         map.put("URL", productImageUrl);
 

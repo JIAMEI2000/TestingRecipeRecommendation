@@ -37,30 +37,30 @@
                 android:textSize="22sp"
                 android:textColor="@color/black" />
 
-<!--            &lt;!&ndash; Purchased Date Row &ndash;&gt;-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center_vertical">-->
+            <!-- Purchased Date Row -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/purchasedDate_title"-->
-<!--                    android:text="Purchased Date: "-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:textColor="@color/black" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/purchasedDate_title"
+                    android:text="Purchased Date: "
+                    android:textSize="15sp"
+                    android:textColor="@color/black" />
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/purchasedDate"-->
-<!--                    android:text="Purchased Date"-->
-<!--                    android:textSize="15sp"-->
-<!--                    android:textColor="@color/black" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/displayPurchasedDate"
+                    android:text="Purchased Date"
+                    android:textSize="15sp"
+                    android:textColor="@color/black" />
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
 
             <!-- Expiry Date Row -->
             <LinearLayout

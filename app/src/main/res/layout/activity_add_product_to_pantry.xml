@@ -113,31 +113,31 @@
 
     </LinearLayout>
 
-<!--    &lt;!&ndash; Purchased Date &ndash;&gt;-->
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Purchased Date:"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="20dp"-->
-<!--        android:layout_marginLeft="15dp"/>-->
+    <!-- Purchased Date -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchased Date:"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="15dp"/>
 
-<!--        &lt;!&ndash; Display Purchased Date &ndash;&gt;-->
-<!--        <TextView-->
-<!--            android:id="@+id/displayPuchasedDate"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="25dp"-->
-<!--            android:text="No selected date"-->
-<!--            android:layout_marginLeft="15dp"/>-->
+        <!-- Display Purchased Date -->
+        <TextView
+            android:id="@+id/displayPurchasedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="No selected date"
+            android:layout_marginLeft="15dp"/>
 
-<!--        <Button-->
-<!--            android:id="@+id/datepickerButton1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Pick a Date"-->
-<!--            android:layout_marginLeft="15dp"-->
-<!--            android:layout_marginBottom="15dp"/>-->
+        <Button
+            android:id="@+id/datepickerButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a Date"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"/>
 
         <!-- Expiry Date -->
         <TextView
