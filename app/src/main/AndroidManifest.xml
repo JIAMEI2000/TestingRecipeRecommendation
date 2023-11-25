@@ -16,6 +16,21 @@
         android:theme="@style/Theme.DeliciFind"
         tools:targetApi="31">
         <activity
+            android:name=".editUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".showUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".registerAccount"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".showRecipeList"
+            android:exported="false" />
+        <activity
             android:name=".editPantry"
             android:exported="false" />
         <activity

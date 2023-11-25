@@ -54,11 +54,11 @@ public class showPantryList extends AppCompatActivity {
             if (item.getItemId() == R.id.bottom_kitchen) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_recipe) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), showRecipeList.class));
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {
-                startActivity(new Intent(getApplicationContext(), showProfile.class));
+                startActivity(new Intent(getApplicationContext(), showUserProfile.class));
                 finish();
                 return true;
             }

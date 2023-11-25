@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addProductToPantry">
+    tools:context=".addProductToPantry"
+    android:background="@color/purple_100">
 
     <include
         layout="@layout/toolbar"
@@ -13,7 +14,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="15dp">
 
     <LinearLayout
         android:id="@+id/linearLayoutOne"
@@ -22,7 +24,8 @@
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"

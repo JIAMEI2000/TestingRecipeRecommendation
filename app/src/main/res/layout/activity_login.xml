@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login"
+    android:background="@color/purple_100">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/delicifind_logo"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Welcome Back to DeliciFind"
+            android:layout_gravity="center"
+            android:fontFamily="cursive"
+            android:textColor="#090A0A"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/emailRegText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="  User Email Address "
+            android:inputType="textEmailAddress"
+            android:textColorHint="#808080"
+            android:background="@drawable/custom_border"/>
+
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/passwordField"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="textPassword"
+            android:background="@drawable/custom_border"
+            android:hint="  Password"
+            android:textColorHint="#808080"/>
+
+    <TextView
+        android:id="@+id/forgotPsdTextLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:textColor="#6B4EFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/fingerprintLink"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Log in with \nFINGERPRINT"-->
+<!--        android:textColor="#6B4EFF"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"/>-->
+
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#6B4EFF"
+        android:text="Log in"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        app:cornerRadius="48dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

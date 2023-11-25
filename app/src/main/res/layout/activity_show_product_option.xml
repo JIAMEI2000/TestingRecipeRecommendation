@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".showProductOption">
+    tools:context=".showProductOption"
+    android:background="@color/purple_100">
 
     <include
         layout="@layout/toolbar"/>

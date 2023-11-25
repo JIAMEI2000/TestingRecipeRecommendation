@@ -13,13 +13,6 @@
         android:padding="15dp"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/pImage"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/black" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -28,20 +21,37 @@
             android:orientation="vertical"
             android:layout_marginStart="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/pName"
-                android:text="Kitchen Product Name"
-                android:textStyle="bold"
-                android:textSize="22sp"
-                android:textColor="@color/black" />
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:id="@+id/pImage"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:height="40dp"
+                    android:id="@+id/pName"
+                    android:text="Kitchen Product Name"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
             <!-- Purchased Date Row -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="3dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -64,7 +74,7 @@
 
             <!-- Expiry Date Row -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
@@ -89,7 +99,7 @@
 
             <!-- Quantity Row -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
