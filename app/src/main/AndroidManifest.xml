@@ -37,9 +37,6 @@
             android:name=".showRecipeDetails"
             android:exported="false" />
         <activity
-            android:name=".showProfile"
-            android:exported="false" />
-        <activity
             android:name=".createNewProduct"
             android:exported="false" />
         <activity

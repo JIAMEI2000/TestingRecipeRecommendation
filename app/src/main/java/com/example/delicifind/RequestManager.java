@@ -8,6 +8,7 @@ import com.example.delicifind.Listeners.RecipeDetailsListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipeDetailsResponse;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,8 @@ public class RequestManager {
     private DatabaseReference pantryDatabase;  // Firebase Database reference
     public RequestManager(Context context) { // constructor for the RequestManager class
         this.context = context;
-        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
     }
 
     public void retrievePantryItems(PantryItemsResponseListener listener) {

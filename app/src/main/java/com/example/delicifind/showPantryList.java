@@ -20,6 +20,7 @@ import com.example.delicifind.Models.Pantry;
 import com.example.delicifind.Models.ProductOption;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,7 @@ public class showPantryList extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     Spinner spinner;
     SearchView searchBar;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,8 @@ public class showPantryList extends AppCompatActivity {
         titleText.setText("Kitchen Inventory");
 
         recyclerView = findViewById(R.id.pantryRV);
-        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry");
+        auth = FirebaseAuth.getInstance();
+        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

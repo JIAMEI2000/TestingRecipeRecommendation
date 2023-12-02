@@ -18,6 +18,7 @@ import com.example.delicifind.R;
 import com.example.delicifind.editPantry;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -70,8 +71,8 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 //                        int position = holder.getAdapterPosition();
-
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry").child(pantry.getKey());
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry").child(pantry.getKey());
                         // Remove the item from Firebase
                         databaseReference.removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

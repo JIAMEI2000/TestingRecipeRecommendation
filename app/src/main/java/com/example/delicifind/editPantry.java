@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -137,8 +138,9 @@ public class editPantry extends AppCompatActivity implements DatePickerDialog.On
         String ingredientName = getIntent().getStringExtra("ingredientName");
         String categoryName = getIntent().getStringExtra("category");
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         // Initialize the DatabaseReference
-        DatabaseReference pantryDatabase = FirebaseDatabase.getInstance().getReference().child("Recipe").child("Pantry");
+        DatabaseReference pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
 
         // Retrieve the updated data
         String updatedQuantityNum = quantity.getText().toString();

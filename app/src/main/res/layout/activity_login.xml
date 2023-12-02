@@ -48,6 +48,9 @@
             android:hint="  User Email Address "
             android:inputType="textEmailAddress"
             android:textColorHint="#808080"
+            android:drawableLeft="@drawable/baseline_email_24"
+            android:drawablePadding="8dp"
+            android:padding="8dp"
             android:background="@drawable/custom_border"/>
 
         <TextView
@@ -67,6 +70,9 @@
             android:inputType="textPassword"
             android:background="@drawable/custom_border"
             android:hint="  Password"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:drawablePadding="8dp"
+            android:padding="8dp"
             android:textColorHint="#808080"/>
 
     <TextView

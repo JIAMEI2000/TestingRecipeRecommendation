@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,10 +37,14 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
     TextView titleText;
     DatePickerFragment purchasedDatePicker, expiryDatePicker;
     int count=1;
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_to_pantry);
+
+        auth = FirebaseAuth.getInstance();
 
         titleText = findViewById(R.id.titleText);
         titleText.setText("Add Ingredient To Kitchen");
@@ -145,7 +150,7 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         map.put("expiryDate",expiryDate.getText().toString());
         map.put("URL", productImageUrl);
 
-        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("Pantry").push();
+        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry").push();
 
         poDatabase.setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
