@@ -41,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
         createAccBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, showRecipeList.class));
+                startActivity(new Intent(MainActivity.this, registerAccount.class));
+            }
+        });
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, login.class));
             }
         });
 
