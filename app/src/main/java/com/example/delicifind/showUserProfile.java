@@ -94,7 +94,7 @@ public class showUserProfile extends AppCompatActivity {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(showUserProfile.this);
                 dialog.setTitle("Are you sure?");
                 dialog.setMessage("Deleting this account will result in completely removing your account " +
-                        "from the system and you won't be able to access the app.");
+                        "and you won't be able to access the system.");
                 dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
