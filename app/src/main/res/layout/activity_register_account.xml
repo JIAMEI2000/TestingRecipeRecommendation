@@ -99,7 +99,7 @@
 
         <Button
             android:id="@+id/createAccButton"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:backgroundTint="#6B4EFF"
@@ -107,7 +107,7 @@
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             app:cornerRadius="48dp"/>
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.delicifind;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -21,11 +22,13 @@ public class login extends AppCompatActivity {
     EditText loginEmail,loginPassword;
     Button loginBtn;
     FirebaseAuth auth;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         auth = FirebaseAuth.getInstance();
         loginEmail = findViewById(R.id.emailField);
@@ -40,16 +43,28 @@ public class login extends AppCompatActivity {
 
                 if(!email.isEmpty()&& Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     if(!password.isEmpty()){
+
+                        progressDialog = new ProgressDialog(login.this);
+                        progressDialog.setMessage("Logging in...");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
                         auth.signInWithEmailAndPassword(email,password)
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
+                                        if (progressDialog != null && progressDialog.isShowing()) {
+                                            progressDialog.dismiss();
+                                        }
                                         Toast.makeText(login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(login.this, showRecipeList.class));
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        if (progressDialog != null && progressDialog.isShowing()) {
+                                            progressDialog.dismiss();
+                                        }
                                         Toast.makeText(login.this, "Failed to Login", Toast.LENGTH_SHORT).show();
                                     }
                                 });

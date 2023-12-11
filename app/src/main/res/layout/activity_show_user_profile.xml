@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@mipmap/ic_launcher"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,17 +44,40 @@
                 android:textSize="25sp"
                 android:textStyle="bold"/>
 
-            <Button
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="Edit Profile"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/purple_700"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:cornerRadius="48dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/editButton"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Edit Profile"
+                        android:textAllCaps="false"
+                        android:backgroundTint="@color/purple_700"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="48dp"/>
+
+                    <Button
+                        android:id="@+id/deleteAccButton"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Delete Account"
+                        android:textAllCaps="false"
+                        android:backgroundTint="@color/red"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="48dp"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -126,12 +149,14 @@
 
         </LinearLayout>
 
+
+
         <Button
-            android:id="@+id/deleteAccButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/logoutButton"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Delete Account"
+            android:text="Logout"
             android:textAllCaps="false"
             android:backgroundTint="@color/red"
             android:layout_gravity="center_horizontal"

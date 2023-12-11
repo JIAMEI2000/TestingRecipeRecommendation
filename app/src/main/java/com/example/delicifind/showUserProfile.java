@@ -27,8 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 public class showUserProfile extends AppCompatActivity {
 
     TextView titleText,profileName,profileEmail,profilePassword;
-    Button deleteAccBtn;
+    Button deleteAccBtn,logoutBtn;
     FirebaseUser user;
+    FirebaseAuth auth;
     private DatabaseReference reference;
     private String userID;
 
@@ -62,8 +63,10 @@ public class showUserProfile extends AppCompatActivity {
         profileEmail = findViewById(R.id.userEmail);
         profilePassword = findViewById(R.id.userPassword);
         deleteAccBtn = findViewById(R.id.deleteAccButton);
+        logoutBtn = findViewById(R.id.logoutButton);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Recipe").child("User");
         userID = user.getUid();
 
@@ -76,7 +79,7 @@ public class showUserProfile extends AppCompatActivity {
                     String name = user.getName();
                     String email = user.getEmail();
                     String password = user.getPassword();
-                    profileName.setText(name);
+                    profileName.setText("Welcome, "+name);
                     profileEmail.setText(email);
                     profilePassword.setText(password);
                 }
@@ -124,6 +127,33 @@ public class showUserProfile extends AppCompatActivity {
                 });
 
                 AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                androidx.appcompat.app.AlertDialog.Builder dialog = new androidx.appcompat.app.AlertDialog.Builder(showUserProfile.this);
+                dialog.setMessage("Are you sure you want to log out?");
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        auth.signOut();
+                        Intent intent = new Intent(showUserProfile.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                androidx.appcompat.app.AlertDialog alertDialog = dialog.create();
                 alertDialog.show();
             }
         });

@@ -3,6 +3,7 @@ package com.example.delicifind;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class registerAccount extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +56,20 @@ public class registerAccount extends AppCompatActivity {
                 if(uPassword.isEmpty()){
                     password.setError("Password cannot be empty");
                 }else{
+                    progressDialog = new ProgressDialog(registerAccount.this);
+                    progressDialog.setMessage("Signing Up...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     auth.createUserWithEmailAndPassword(uEmail,uPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 insertUser();
+                                progressDialog.dismiss();
                                 Toast.makeText(registerAccount.this, "Register Successfully",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(registerAccount.this, login.class));
                             }else{
+                                progressDialog.dismiss();
                                 Toast.makeText(registerAccount.this, "Failed to Register" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
