@@ -6,6 +6,10 @@
         android:icon="@drawable/chef_hat"
         android:title="Recipe" />
     <item
+        android:id="@+id/bottom_search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Search" />
+    <item
         android:id="@+id/bottom_kitchen"
         android:icon="@drawable/kitchen_pantry"
         android:title="Kitchen" />

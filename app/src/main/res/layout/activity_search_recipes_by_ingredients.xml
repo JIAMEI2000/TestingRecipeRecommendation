@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/purple_100">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".searchRecipesByIngredients"
+        android:background="@color/purple_100">
+
+        <include
+            layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Button to dynamically add more ingredients -->
+            <Button
+                android:id="@+id/btnAddIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Ingredient"
+                android:layout_gravity="end"/>
+
+<!--            &lt;!&ndash; Initial EditText for the first ingredient &ndash;&gt;-->
+<!--            <EditText-->
+<!--                android:id="@+id/editTextIngredient1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:hint=" Enter Ingredient"-->
+<!--                android:background="@drawable/custom_border"-->
+<!--                android:layout_marginTop="5dp"/>-->
+
+            <!-- Placeholder for dynamically added EditText fields -->
+            <LinearLayout
+                android:id="@+id/llIngredientContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- Dynamically added EditText fields will go here -->
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/searchRecipeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search Recipes"
+                android:layout_marginTop="40dp"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_background"
+            android:elevation="2dp"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@drawable/item_selector"
+            app:itemRippleColor="@android:color/transparent"
+            app:menu="@menu/bottom_menu"
+            app:labelVisibilityMode="labeled"/>
+    </LinearLayout>
+</ScrollView>

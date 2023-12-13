@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class showUserProfile extends AppCompatActivity {
 
     TextView titleText,profileName,profileEmail,profilePassword;
-    Button deleteAccBtn,logoutBtn;
+    Button editBtn,deleteAccBtn,logoutBtn;
     FirebaseUser user;
     FirebaseAuth auth;
     private DatabaseReference reference;
@@ -44,6 +44,10 @@ public class showUserProfile extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bottom_recipe) {
                 startActivity(new Intent(getApplicationContext(), showRecipeList.class));
+                finish();
+                return true;
+            } else if (item.getItemId() == R.id.bottom_search) {
+                startActivity(new Intent(getApplicationContext(), searchRecipesByIngredients.class));
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_kitchen) {
@@ -64,6 +68,7 @@ public class showUserProfile extends AppCompatActivity {
         profilePassword = findViewById(R.id.userPassword);
         deleteAccBtn = findViewById(R.id.deleteAccButton);
         logoutBtn = findViewById(R.id.logoutButton);
+        editBtn = findViewById(R.id.editButton);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -96,8 +101,7 @@ public class showUserProfile extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(showUserProfile.this);
                 dialog.setTitle("Are you sure?");
-                dialog.setMessage("Deleting this account will result in completely removing your account " +
-                        "and you won't be able to access the system.");
+                dialog.setMessage("Deleting this account will result in completely removing your account");
                 dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -155,6 +159,14 @@ public class showUserProfile extends AppCompatActivity {
 
                 androidx.appcompat.app.AlertDialog alertDialog = dialog.create();
                 alertDialog.show();
+            }
+        });
+
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(showUserProfile.this, editUserProfile.class);
+                startActivity(intent);
             }
         });
     }

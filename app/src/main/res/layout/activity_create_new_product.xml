@@ -43,6 +43,7 @@
             android:layout_height="48dp"
             android:background="@drawable/custom_border"
             android:focusableInTouchMode="true"
+            android:singleLine="true"
             android:hint="  Enter ingredient name" />
 
     <!-- Category -->

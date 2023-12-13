@@ -39,6 +39,10 @@ public class showRecipeList extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bottom_recipe) {
                 return true;
+            } else if (item.getItemId() == R.id.bottom_search) {
+                startActivity(new Intent(getApplicationContext(), searchRecipesByIngredients.class));
+                finish();
+                return true;
             } else if (item.getItemId() == R.id.bottom_kitchen) {
                 startActivity(new Intent(getApplicationContext(), showPantryList.class));
                 finish();

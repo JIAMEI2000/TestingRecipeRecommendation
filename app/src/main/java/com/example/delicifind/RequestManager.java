@@ -88,7 +88,7 @@ public class RequestManager {
 
         Call<List<RecipesByIngredientsApiResponse>> call = callRecipesByIngredients.callRecipeByIngredient(
                 context.getString(R.string.api_key),
-                "5",  // Adjust the number as needed
+                "8",  // Adjust the number as needed
                 ingredients
         );
 
