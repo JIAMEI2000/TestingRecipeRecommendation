@@ -11,6 +11,19 @@
     <include
         layout="@layout/toolbar"/>
 
+    <TextView
+        android:id="@+id/noRecipeMessage"
+        android:layout_width="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="No recommended recipes. \nYour kitchen is empty. \n\nStart adding ingredients \ninto your kitchen now!"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_recipe"
         android:layout_margin="4dp"

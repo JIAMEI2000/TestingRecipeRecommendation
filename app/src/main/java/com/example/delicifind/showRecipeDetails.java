@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,8 +33,9 @@ public class showRecipeDetails extends AppCompatActivity {
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsAdapter ingredientsAdapter;
-
     RecipeStepsAdapter recipeStepsAdapter;
+    Button btnNutritionInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,14 @@ public class showRecipeDetails extends AppCompatActivity {
         dialog.setTitle("Loading Recipe Details...");
         dialog.show();
 
+        btnNutritionInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(showRecipeDetails.this,showRecipeNutrients.class)
+                        .putExtra("id",id));
+            }
+        });
+
     }
 
     private void findViews(){
@@ -57,6 +69,7 @@ public class showRecipeDetails extends AppCompatActivity {
         recipeImage = findViewById(R.id.recipeImage);
         rvIngredients = findViewById(R.id.rvIngredients);
         rvSteps = findViewById(R.id.rvSteps);
+        btnNutritionInfo = findViewById(R.id.btnNutritionInfo);
     }
 
     private final RecipeDetailsListener recipeDetailsListener = new RecipeDetailsListener() {

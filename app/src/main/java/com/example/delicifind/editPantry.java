@@ -161,7 +161,7 @@ public class editPantry extends AppCompatActivity implements DatePickerDialog.On
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(editPantry.this, "Data Updated Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(editPantry.this, "Kitchen Ingredient Updated Successfully!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 })

@@ -5,8 +5,10 @@ import android.util.Log;
 
 import com.example.delicifind.Listeners.PantryItemsResponseListener;
 import com.example.delicifind.Listeners.RecipeDetailsListener;
+import com.example.delicifind.Listeners.RecipeNutrientsResponseListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipeDetailsResponse;
+import com.example.delicifind.Models.RecipeNutrientApiResponse;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -130,6 +132,27 @@ public class RequestManager {
 
     }
 
+    public void getRecipeNutrients(int id, RecipeNutrientsResponseListener listener) {
+        CallRecipeNutrients callRecipeNutrients = retrofit.create(CallRecipeNutrients.class);
+        Call<RecipeNutrientApiResponse> call = callRecipeNutrients.callRecipeNutrients(id, context.getString(R.string.api_key));
+        call.enqueue(new Callback<RecipeNutrientApiResponse>() {
+            @Override
+            public void onResponse(Call<RecipeNutrientApiResponse> call, Response<RecipeNutrientApiResponse> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<RecipeNutrientApiResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+
     private interface CallRecipesByIngredients{
         @GET("recipes/findByIngredients")
         Call<List<RecipesByIngredientsApiResponse>> callRecipeByIngredient(
@@ -147,4 +170,11 @@ public class RequestManager {
         );
     }
 
+    private interface CallRecipeNutrients {
+        @GET("recipes/{id}/nutritionWidget.json")
+        Call<RecipeNutrientApiResponse> callRecipeNutrients(
+                @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+    }
 }

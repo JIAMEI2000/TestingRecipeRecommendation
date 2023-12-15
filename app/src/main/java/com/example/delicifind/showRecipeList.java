@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class showRecipeList extends AppCompatActivity {
     RequestManager manager;
     RecipesByIngredientsAdapter recipesByIngredientsAdapter;
     RecyclerView recipeRecyclerView;
-    TextView titleText;
+    TextView titleText,noRecipeMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,9 @@ public class showRecipeList extends AppCompatActivity {
         titleText = findViewById(R.id.titleText);
         titleText.setText("Recipe");
 
+        noRecipeMessage = findViewById(R.id.noRecipeMessage);
+        recipeRecyclerView = findViewById(R.id.recycler_recipe);
+
         dialog = new ProgressDialog(this);
         dialog.setTitle("Loading...");
 
@@ -80,23 +84,42 @@ public class showRecipeList extends AppCompatActivity {
 
     }
 
-    private final RecipesByIngredientsResponseListener recipesByIngredientsResponseListener = new RecipesByIngredientsResponseListener() {
+    private void displayRecipes(List<RecipesByIngredientsApiResponse> response) {
+        dialog.dismiss();
 
+
+        recipeRecyclerView.setHasFixedSize(true);
+        recipeRecyclerView.setLayoutManager(new GridLayoutManager(showRecipeList.this,1));
+        recipesByIngredientsAdapter = new RecipesByIngredientsAdapter(showRecipeList.this,response,recipeClickListener);
+        recipeRecyclerView.setAdapter(recipesByIngredientsAdapter);
+
+        // Show RecyclerView and hide the message
+        recipeRecyclerView.setVisibility(View.VISIBLE);
+        noRecipeMessage.setVisibility(View.GONE);
+    }
+
+    private void displayNoRecipeMessage() {
+        dialog.dismiss();
+
+        // Show the message and hide RecyclerView
+        noRecipeMessage.setVisibility(View.VISIBLE);
+        recipeRecyclerView.setVisibility(View.GONE);
+    }
+
+    private final RecipesByIngredientsResponseListener recipesByIngredientsResponseListener = new RecipesByIngredientsResponseListener() {
         @Override
         public void didFetch(List<RecipesByIngredientsApiResponse> response, String message) {
-            dialog.dismiss();
-
-//            Log.d("Response", "Recipe Count: " + response.size());
-
-            recipeRecyclerView = findViewById(R.id.recycler_recipe);
-            recipeRecyclerView.setHasFixedSize(true);
-            recipeRecyclerView.setLayoutManager(new GridLayoutManager(showRecipeList.this,1));
-            recipesByIngredientsAdapter = new RecipesByIngredientsAdapter(showRecipeList.this,response,recipeClickListener);
-            recipeRecyclerView.setAdapter(recipesByIngredientsAdapter);
+            if (response != null && !response.isEmpty()) {
+                displayRecipes(response);
+            } else {
+                displayNoRecipeMessage();
+            }
         }
+
         @Override
         public void didError(String message) {
-            Toast.makeText(showRecipeList.this,message,Toast.LENGTH_LONG).show();
+            Toast.makeText(showRecipeList.this, message, Toast.LENGTH_LONG).show();
+            displayNoRecipeMessage(); // Handle error by displaying the message
         }
     };
 

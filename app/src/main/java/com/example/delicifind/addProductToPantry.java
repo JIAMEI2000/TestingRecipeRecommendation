@@ -156,7 +156,7 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(addProductToPantry.this, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addProductToPantry.this, "Ingredient Added to Kitchen Successfully!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
