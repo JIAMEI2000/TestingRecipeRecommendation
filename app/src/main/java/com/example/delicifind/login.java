@@ -58,7 +58,7 @@ public class login extends AppCompatActivity {
                                         }
                                         Toast.makeText(login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
 //                                        startActivity(new Intent(login.this, showRecipeList.class));
-                                        startActivity(new Intent(login.this, showUserProfile.class));
+                                        startActivity(new Intent(login.this, showRecipeList.class));
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

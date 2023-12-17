@@ -25,6 +25,8 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+
+
             <!-- Button to dynamically add more ingredients -->
             <Button
                 android:id="@+id/btnAddIngredient"
@@ -32,6 +34,16 @@
                 android:layout_height="wrap_content"
                 android:text="Add Ingredient"
                 android:layout_gravity="end"/>
+
+            <TextView
+                android:id="@+id/instructionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Start searching recipes by adding ingredients first."
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:textColor="@color/black"/>
 
 <!--            &lt;!&ndash; Initial EditText for the first ingredient &ndash;&gt;-->
 <!--            <EditText-->

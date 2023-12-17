@@ -23,6 +23,7 @@ public class searchRecipesByIngredients extends AppCompatActivity {
     private Button addIngredientBtn,searchRecipesBtn;
     private TextView titleText;
     private int ingredientCount = 0;
+    private boolean isFirstIngredientAdded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,12 @@ public class searchRecipesByIngredients extends AppCompatActivity {
     }
 
     private void addIngredientEditText() {
+
+        if (!isFirstIngredientAdded) {
+            // Remove the instruction TextView if it's still present
+            ingredientContainer.removeView(findViewById(R.id.instructionTextView));
+            isFirstIngredientAdded = true;
+        }
 
         // Increment the ingredient count
         ingredientCount++;

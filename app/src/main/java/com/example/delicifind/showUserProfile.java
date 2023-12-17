@@ -87,6 +87,14 @@ public class showUserProfile extends AppCompatActivity {
                     profileName.setText("Welcome, "+name);
                     profileEmail.setText(email);
                     profilePassword.setText(password);
+
+                    editBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(showUserProfile.this, editUserProfile.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
@@ -162,12 +170,6 @@ public class showUserProfile extends AppCompatActivity {
             }
         });
 
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(showUserProfile.this, editUserProfile.class);
-                startActivity(intent);
-            }
-        });
+
     }
 }
