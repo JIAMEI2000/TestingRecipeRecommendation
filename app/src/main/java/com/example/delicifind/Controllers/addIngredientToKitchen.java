@@ -1,8 +1,7 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.delicifind.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,13 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class addProductToPantry extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class addIngredientToKitchen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     TextView product,category,quantity,expiryDate,purchasedDate;
     Button decrementBtn,incrementBtn,expiryDatePickerBtn, purchasedDatePickerBtn,addToPantryButton;
@@ -42,7 +41,7 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product_to_pantry);
+        setContentView(R.layout.activity_add_ingredient_to_kitchen);
 
         auth = FirebaseAuth.getInstance();
 
@@ -115,7 +114,7 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
             @Override
             public void onClick(View v) {
                 insertPantryData();
-                startActivity(new Intent(addProductToPantry.this, showPantryList.class));
+                startActivity(new Intent(addIngredientToKitchen.this, showKitchenList.class));
             }
 
         });
@@ -150,19 +149,19 @@ public class addProductToPantry extends AppCompatActivity implements DatePickerD
         map.put("expiryDate",expiryDate.getText().toString());
         map.put("URL", productImageUrl);
 
-        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry").push();
+        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient").push();
 
         poDatabase.setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(addProductToPantry.this, "Ingredient Added to Kitchen Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addIngredientToKitchen.this, "Ingredient Added to Kitchen Successfully!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(addProductToPantry.this, "Error while Insertion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addIngredientToKitchen.this, "Error while Insertion", Toast.LENGTH_SHORT).show();
                     }
                 });
 

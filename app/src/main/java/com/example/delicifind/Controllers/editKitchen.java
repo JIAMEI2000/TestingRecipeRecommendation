@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.delicifind.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,18 +26,17 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class editPantry extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class editKitchen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     TextView ingredient, category, quantity, expiryDate, purchasedDate;
     Button decrementBtn, incrementBtn, expiryDatePickerBtn, purchasedDatePickerBtn, updateButton;
     CircleImageView pantryImage;
     DatePickerFragment purchasedDatePicker, expiryDatePicker;
-    int count = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_pantry);
+        setContentView(R.layout.activity_edit_kitchen);
 
         ingredient = findViewById(R.id.productText);
         category = findViewById(R.id.categoryText);
@@ -75,19 +75,31 @@ public class editPantry extends AppCompatActivity implements DatePickerDialog.On
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count++;
-                quantity.setText("" + count);
+                // Parse the current quantity to an integer
+                int currentQuantity = Integer.parseInt(quantity.getText().toString());
+
+                // Increment the quantity
+                currentQuantity++;
+
+                // Update the quantity TextView
+                quantity.setText(String.valueOf(currentQuantity));
             }
         });
 
         decrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count <= 1)
-                    count = 1;
-                else
-                    count--;
-                quantity.setText("" + count);
+                // Parse the current quantity to an integer
+                int currentQuantity = Integer.parseInt(quantity.getText().toString());
+
+                // Ensure the quantity doesn't go below 1
+                if (currentQuantity > 1) {
+                    // Decrement the quantity
+                    currentQuantity--;
+
+                    // Update the quantity TextView
+                    quantity.setText(String.valueOf(currentQuantity));
+                }
             }
         });
 
@@ -140,7 +152,7 @@ public class editPantry extends AppCompatActivity implements DatePickerDialog.On
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         // Initialize the DatabaseReference
-        DatabaseReference pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
+        DatabaseReference pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient");
 
         // Retrieve the updated data
         String updatedQuantityNum = quantity.getText().toString();
@@ -161,14 +173,14 @@ public class editPantry extends AppCompatActivity implements DatePickerDialog.On
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(editPantry.this, "Kitchen Ingredient Updated Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(editKitchen.this, "Kitchen Ingredient Updated Successfully!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(editPantry.this, "Error while Updating", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(editKitchen.this, "Error while Updating", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

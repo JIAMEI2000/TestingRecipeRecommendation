@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,7 @@ import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipeDetailsResponse;
 import com.example.delicifind.Models.RecipeNutrientApiResponse;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +40,7 @@ public class RequestManager {
     public RequestManager(Context context) { // constructor for the RequestManager class
         this.context = context;
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
+        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient");
     }
 
     public void retrievePantryItems(PantryItemsResponseListener listener) {

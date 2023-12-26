@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.delicifind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class searchRecipesByIngredients extends AppCompatActivity {
             } else if (item.getItemId() == R.id.bottom_search) {
                 return true;
             } else if (item.getItemId() == R.id.bottom_kitchen) {
-                startActivity(new Intent(getApplicationContext(), showPantryList.class));
+                startActivity(new Intent(getApplicationContext(), showKitchenList.class));
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {

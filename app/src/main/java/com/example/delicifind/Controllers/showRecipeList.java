@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +15,7 @@ import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
 import com.example.delicifind.Listeners.RecipeClickListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class showRecipeList extends AppCompatActivity {
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_kitchen) {
-                startActivity(new Intent(getApplicationContext(), showPantryList.class));
+                startActivity(new Intent(getApplicationContext(), showKitchenList.class));
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {
@@ -127,7 +126,7 @@ public class showRecipeList extends AppCompatActivity {
         @Override
         public void onRecipeClicked(String id) {
 //            Toast.makeText(MainActivity.this, id, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(showRecipeList.this,showRecipeDetails.class)
+            startActivity(new Intent(showRecipeList.this, showRecipeDetails.class)
                     .putExtra("id",id));
         }
     };

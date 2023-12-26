@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 
 import androidx.activity.result.ActivityResult;
@@ -7,11 +7,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,10 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.delicifind.Adapters.ProductOptionAdapter;
-import com.example.delicifind.Models.ProductOption;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.delicifind.Adapters.AvailableIngredientAdapter;
+import com.example.delicifind.Models.AvailableIngredient;
+import com.example.delicifind.R;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -36,17 +32,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 
-public class createNewProduct extends AppCompatActivity {
-    ArrayList<ProductOption> poList;
-    ProductOptionAdapter poAdapter;
+public class createNewIngredient extends AppCompatActivity {
+    ArrayList<AvailableIngredient> poList;
+    AvailableIngredientAdapter poAdapter;
     ImageView imageView;
     Button selectBtn, saveBtn, cancelBtn;
     StorageReference storageReference;
@@ -68,7 +62,7 @@ public class createNewProduct extends AppCompatActivity {
                     Glide.with(getApplicationContext()).load(image).into(imageView);
                 }
             } else {
-                Toast.makeText(createNewProduct.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(createNewIngredient.this, "Please select an image", Toast.LENGTH_SHORT).show();
             }
         }
     });
@@ -76,12 +70,12 @@ public class createNewProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_product);
+        setContentView(R.layout.activity_create_new_ingredient);
 
         titleText = findViewById(R.id.titleText);
         titleText.setText("Create New Ingredient");
 
-        FirebaseApp.initializeApp(createNewProduct.this);
+        FirebaseApp.initializeApp(createNewIngredient.this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
         selectBtn = findViewById(R.id.selectFromGalleryBtn);
@@ -94,7 +88,7 @@ public class createNewProduct extends AppCompatActivity {
         cancelBtn = findViewById(R.id.cancelButton);
 
         poList = new ArrayList<>();
-        poAdapter = new ProductOptionAdapter(this, poList);
+        poAdapter = new AvailableIngredientAdapter(this, poList);
 
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +111,7 @@ public class createNewProduct extends AppCompatActivity {
         categoryAdapter.add("Dry Staples");
         catSelectBox.setAdapter(categoryAdapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("ProductOption");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("AvailableIngredient");
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +119,7 @@ public class createNewProduct extends AppCompatActivity {
                 String productName = productInput.getText().toString();
                 String category = catSelectBox.getSelectedItem().toString(); // Get the selected category
                 if (image == null || productName.isEmpty()) {
-                    Toast.makeText(createNewProduct.this, "Please select an image and enter a product name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(createNewIngredient.this, "Please select an image and enter a product name", Toast.LENGTH_SHORT).show();
                 } else {
                     // Upload the image to Firebase Storage
                     InsertProductInfo(image, productName, category);
@@ -136,7 +130,7 @@ public class createNewProduct extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(createNewProduct.this, showProductOption.class));
+                startActivity(new Intent(createNewIngredient.this, showAvailableIngredientList.class));
             }
         });
     }
@@ -148,37 +142,37 @@ public class createNewProduct extends AppCompatActivity {
         reference.putFile(image)
                 .addOnSuccessListener(taskSnapshot -> {
                     // Image uploaded successfully
-                    Toast.makeText(createNewProduct.this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(createNewIngredient.this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
 
                     // Get the download URL of the uploaded image
                     reference.getDownloadUrl().addOnSuccessListener(uri -> {
                         String imageUrl = uri.toString();
 
                         // Create a new ProductOption instance
-                        ProductOption productOption = new ProductOption(productName, category, imageUrl);
+                        AvailableIngredient availableIngredient = new AvailableIngredient(productName, category, imageUrl);
 
                         // Insert the product details into the Realtime Database
-                        databaseReference.push().setValue(productOption)
+                        databaseReference.push().setValue(availableIngredient)
                                 .addOnSuccessListener(aVoid -> {
                                     // After successfully writing to the database, fetch the latest data
-                                    Toast.makeText(createNewProduct.this, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(createNewIngredient.this, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
                                     fetchLatestData();
 
                                 })
                                 .addOnFailureListener(e -> {
                                     // Handle database write failure
-                                    Toast.makeText(createNewProduct.this, "Error while Insertion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(createNewIngredient.this, "Error while Insertion", Toast.LENGTH_SHORT).show();
                                 });
 
                     }).addOnFailureListener(e -> {
                         // Handle any errors related to getting the download URL
-                        Toast.makeText(createNewProduct.this, "Failed to get image URL", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(createNewIngredient.this, "Failed to get image URL", Toast.LENGTH_SHORT).show();
                     });
 
                 })
                 .addOnFailureListener(e -> {
                     // Handle errors related to image upload
-                    Toast.makeText(createNewProduct.this, "Error while uploading image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(createNewIngredient.this, "Error while uploading image", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -189,15 +183,15 @@ public class createNewProduct extends AppCompatActivity {
                 // Clear the existing list and add the fetched data to it
                 poList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ProductOption productOption = dataSnapshot.getValue(ProductOption.class);
-                    poList.add(productOption);
+                    AvailableIngredient availableIngredient = dataSnapshot.getValue(AvailableIngredient.class);
+                    poList.add(availableIngredient);
                 }
 
                 // Notify the adapter of the data change
                 poAdapter.notifyDataSetChanged();
 
                 // Navigate to the showProductOption activity
-                startActivity(new Intent(createNewProduct.this, showProductOption.class));
+                startActivity(new Intent(createNewIngredient.this, showAvailableIngredientList.class));
                 finish();
 
             }

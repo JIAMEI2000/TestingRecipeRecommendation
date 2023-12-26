@@ -17,7 +17,7 @@ import com.example.delicifind.Listeners.RecipeDetailsListener;
 import com.example.delicifind.Models.RecipeDetailsResponse;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
 import com.example.delicifind.R;
-import com.example.delicifind.RequestManager;
+import com.example.delicifind.Controllers.RequestManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

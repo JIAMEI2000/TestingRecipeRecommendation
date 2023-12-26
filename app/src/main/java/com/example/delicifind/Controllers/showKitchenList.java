@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.delicifind.Adapters.PantryAdapter;
-import com.example.delicifind.Models.Pantry;
-import com.example.delicifind.Models.ProductOption;
+import com.example.delicifind.Adapters.KitchenAdapter;
+import com.example.delicifind.Models.SavedIngredient;
+import com.example.delicifind.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,17 +26,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class showPantryList extends AppCompatActivity {
+public class showKitchenList extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Pantry> list;
+    ArrayList<SavedIngredient> list;
     DatabaseReference pantryDatabase;
-    PantryAdapter pantryAdapter;
+    KitchenAdapter kitchenAdapter;
     TextView titleText;
     FloatingActionButton floatingActionButton;
     Spinner spinner;
@@ -47,7 +44,7 @@ public class showPantryList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_pantry_list);
+        setContentView(R.layout.activity_show_kitchen_list);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.bottom_kitchen);
@@ -76,7 +73,7 @@ public class showPantryList extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(showPantryList.this, showProductOption.class));
+                startActivity(new Intent(showKitchenList.this, showAvailableIngredientList.class));
             }
         });
 
@@ -85,24 +82,24 @@ public class showPantryList extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.pantryRV);
         auth = FirebaseAuth.getInstance();
-        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry");
+        pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        pantryAdapter = new PantryAdapter(this, list);
-        recyclerView.setAdapter(pantryAdapter);
+        kitchenAdapter = new KitchenAdapter(this, list);
+        recyclerView.setAdapter(kitchenAdapter);
 
         pantryDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Pantry pantry = dataSnapshot.getValue(Pantry.class);
-                    pantry.setKey(dataSnapshot.getKey());
-                    list.add(pantry);
+                    SavedIngredient savedIngredient = dataSnapshot.getValue(SavedIngredient.class);
+                    savedIngredient.setKey(dataSnapshot.getKey());
+                    list.add(savedIngredient);
                 }
-                pantryAdapter.notifyDataSetChanged();
+                kitchenAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -127,8 +124,8 @@ public class showPantryList extends AppCompatActivity {
                 categories.add("All");
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Pantry pantry = snapshot.getValue(Pantry.class);
-                    String category = pantry.getCategory();
+                    SavedIngredient savedIngredient = snapshot.getValue(SavedIngredient.class);
+                    String category = savedIngredient.getCategory();
                     if (!categories.contains(category)) {
                         categories.add(category);
                     }
@@ -152,7 +149,7 @@ public class showPantryList extends AppCompatActivity {
                 // Check if "All" is selected
                 if ("All".equals(selectedCategory)) {
                     // Display all pantry items
-                    pantryAdapter.updateData(list);
+                    kitchenAdapter.updateData(list);
                 } else {
                     // Filter and display products based on the selected category
                     displayPantryByCategory(selectedCategory);
@@ -190,26 +187,26 @@ public class showPantryList extends AppCompatActivity {
     }
 
     private void searchList(String text){
-        ArrayList<Pantry> searchList =new ArrayList<>();
-        for(Pantry pantry:list){
-            if(pantry.getpName().toLowerCase().contains(text.toLowerCase())){
-                searchList.add(pantry);
+        ArrayList<SavedIngredient> searchList =new ArrayList<>();
+        for(SavedIngredient savedIngredient :list){
+            if(savedIngredient.getpName().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(savedIngredient);
             }
         }
-        pantryAdapter.searchSavedIngredients(searchList);
+        kitchenAdapter.searchSavedIngredients(searchList);
     }
 
     private void displayPantryByCategory(String selectedCategory) {
-        ArrayList<Pantry> filteredProducts = new ArrayList<>();
+        ArrayList<SavedIngredient> filteredProducts = new ArrayList<>();
 
         // Filter pantry by category
-        for (Pantry pantry : list) {
-            if (pantry.getCategory().equals(selectedCategory)) {
-                filteredProducts.add(pantry);
+        for (SavedIngredient savedIngredient : list) {
+            if (savedIngredient.getCategory().equals(selectedCategory)) {
+                filteredProducts.add(savedIngredient);
             }
         }
 
         // Update the RecyclerView with the filtered pantry
-        pantryAdapter.updateData(filteredProducts);
+        kitchenAdapter.updateData(filteredProducts);
     }
 }

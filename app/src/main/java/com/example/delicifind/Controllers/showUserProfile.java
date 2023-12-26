@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.Models.User;
+import com.example.delicifind.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,7 +52,7 @@ public class showUserProfile extends AppCompatActivity {
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_kitchen) {
-                startActivity(new Intent(getApplicationContext(), showPantryList.class));
+                startActivity(new Intent(getApplicationContext(), showKitchenList.class));
                 finish();
                 return true;
             } else if (item.getItemId() == R.id.bottom_profile) {

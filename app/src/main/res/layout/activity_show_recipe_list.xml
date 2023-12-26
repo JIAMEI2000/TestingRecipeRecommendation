@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".showRecipeList"
+    tools:context=".Controllers.showRecipeList"
     android:background="@color/purple_100">
 
     <include
@@ -13,14 +13,15 @@
 
     <TextView
         android:id="@+id/noRecipeMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_centerInParent="true"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:textAlignment="center"
         android:text="No recommended recipes. \nYour kitchen is empty. \n\nStart adding ingredients \ninto your kitchen now!"
         android:visibility="gone" />
 

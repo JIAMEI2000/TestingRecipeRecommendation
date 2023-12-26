@@ -1,13 +1,13 @@
 package com.example.delicifind.Models;
 
-public class ProductOption {
+public class AvailableIngredient {
 
     String poName,category,URL;
 
-    ProductOption(){
+    AvailableIngredient(){
 
     }
-    public ProductOption(String poName,String category,String URL) {
+    public AvailableIngredient(String poName, String category, String URL) {
         this.poName = poName;
         this.category = category;
         this.URL = URL;

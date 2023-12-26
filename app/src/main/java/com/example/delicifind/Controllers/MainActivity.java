@@ -1,26 +1,15 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
-import com.example.delicifind.Listeners.RecipeClickListener;
-import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
-import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
+import com.example.delicifind.R;
 
 public class MainActivity extends AppCompatActivity {
 

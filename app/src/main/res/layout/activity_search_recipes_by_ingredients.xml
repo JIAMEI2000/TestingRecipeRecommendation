@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".searchRecipesByIngredients"
+        tools:context=".Controllers.searchRecipesByIngredients"
         android:background="@color/purple_100">
 
         <include
@@ -25,16 +25,6 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-
-
-            <!-- Button to dynamically add more ingredients -->
-            <Button
-                android:id="@+id/btnAddIngredient"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Ingredient"
-                android:layout_gravity="end"/>
-
             <TextView
                 android:id="@+id/instructionTextView"
                 android:layout_width="match_parent"
@@ -45,14 +35,13 @@
                 android:padding="8dp"
                 android:textColor="@color/black"/>
 
-<!--            &lt;!&ndash; Initial EditText for the first ingredient &ndash;&gt;-->
-<!--            <EditText-->
-<!--                android:id="@+id/editTextIngredient1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:hint=" Enter Ingredient"-->
-<!--                android:background="@drawable/custom_border"-->
-<!--                android:layout_marginTop="5dp"/>-->
+            <!-- Button to dynamically add more ingredients -->
+            <Button
+                android:id="@+id/btnAddIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Ingredient"
+                android:layout_gravity="center"/>
 
             <!-- Placeholder for dynamically added EditText fields -->
             <LinearLayout

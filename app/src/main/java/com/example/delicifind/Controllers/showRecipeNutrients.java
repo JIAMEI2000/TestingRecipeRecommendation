@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +11,7 @@ import com.example.delicifind.Adapters.NutrientsAdapter;
 import com.example.delicifind.Listeners.RecipeNutrientsResponseListener;
 import com.example.delicifind.Models.RecipeNutrientApiResponse;
 import com.example.delicifind.Models.WeightPerServing;
+import com.example.delicifind.R;
 
 public class showRecipeNutrients extends AppCompatActivity {
     int id;

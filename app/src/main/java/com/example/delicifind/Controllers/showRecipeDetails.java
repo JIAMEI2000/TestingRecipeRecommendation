@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import com.example.delicifind.Listeners.RecipeDetailsListener;
 import com.example.delicifind.Models.AnalyzedInstruction;
 import com.example.delicifind.Models.RecipeDetailsResponse;
 import com.example.delicifind.Models.Step;
+import com.example.delicifind.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ public class showRecipeDetails extends AppCompatActivity {
         btnNutritionInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(showRecipeDetails.this,showRecipeNutrients.class)
+                startActivity(new Intent(showRecipeDetails.this, showRecipeNutrients.class)
                         .putExtra("id",id));
             }
         });

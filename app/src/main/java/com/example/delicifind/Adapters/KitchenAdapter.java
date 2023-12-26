@@ -13,9 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.example.delicifind.Models.Pantry;
+import com.example.delicifind.Models.SavedIngredient;
 import com.example.delicifind.R;
-import com.example.delicifind.editPantry;
+import com.example.delicifind.Controllers.editKitchen;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,13 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHolder>{
+public class KitchenAdapter extends RecyclerView.Adapter<KitchenAdapter.MyViewHolder>{
 
     Context context;
 
-    ArrayList<Pantry> list;
+    ArrayList<SavedIngredient> list;
 
-    public PantryAdapter(Context context, ArrayList<Pantry> list) {
+    public KitchenAdapter(Context context, ArrayList<SavedIngredient> list) {
         this.context = context;
         this.list = list;
     }
@@ -40,21 +40,21 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.pantry_item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.saved_ingredient,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PantryAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull KitchenAdapter.MyViewHolder holder, int position) {
 
-        Pantry pantry = list.get(position);
-        holder.pName.setText(pantry.getpName());
-        holder.quantity.setText(pantry.getQuantity());
-        holder.purchasedDate.setText(pantry.getPurchasedDate());
-        holder.expiryDate.setText(pantry.getExpiryDate());
+        SavedIngredient savedIngredient = list.get(position);
+        holder.pName.setText(savedIngredient.getpName());
+        holder.quantity.setText(savedIngredient.getQuantity());
+        holder.purchasedDate.setText(savedIngredient.getPurchasedDate());
+        holder.expiryDate.setText(savedIngredient.getExpiryDate());
 
         Glide.with(holder.pImage.getContext())
-                .load(pantry.getURL())
+                .load(savedIngredient.getURL())
                 .placeholder(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark)
                 .circleCrop()
                 .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal)
@@ -72,14 +72,14 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
                     public void onClick(DialogInterface dialog, int which) {
 //                        int position = holder.getAdapterPosition();
                         FirebaseAuth auth = FirebaseAuth.getInstance();
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("Pantry").child(pantry.getKey());
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient").child(savedIngredient.getKey());
                         // Remove the item from Firebase
                         databaseReference.removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(context,"Ingredient is removed",Toast.LENGTH_SHORT).show();
-                                        list.remove(pantry);
+                                        list.remove(savedIngredient);
 
                                         // Notify the adapter of the data change
                                         notifyDataSetChanged();
@@ -106,14 +106,14 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, editPantry.class)
-                        .putExtra("key",pantry.getKey().toString())
-                        .putExtra("imageURL",pantry.getURL().toString())
-                        .putExtra("ingredientName",pantry.getpName().toString())
-                        .putExtra("category",pantry.getCategory().toString())
-                        .putExtra("quantity",pantry.getQuantity().toString())
-                        .putExtra("purchasedDate",pantry.getPurchasedDate().toString())
-                        .putExtra("expiryDate",pantry.getExpiryDate().toString()));
+                context.startActivity(new Intent(context, editKitchen.class)
+                        .putExtra("key", savedIngredient.getKey().toString())
+                        .putExtra("imageURL", savedIngredient.getURL().toString())
+                        .putExtra("ingredientName", savedIngredient.getpName().toString())
+                        .putExtra("category", savedIngredient.getCategory().toString())
+                        .putExtra("quantity", savedIngredient.getQuantity().toString())
+                        .putExtra("purchasedDate", savedIngredient.getPurchasedDate().toString())
+                        .putExtra("expiryDate", savedIngredient.getExpiryDate().toString()));
 
             }
         });
@@ -124,7 +124,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         return list.size();
     }
 
-    public void searchSavedIngredients(ArrayList<Pantry> searchList){
+    public void searchSavedIngredients(ArrayList<SavedIngredient> searchList){
         list = searchList;
         notifyDataSetChanged();
     }
@@ -150,7 +150,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         }
     }
 
-    public void updateData(ArrayList<Pantry> filteredProducts) {
+    public void updateData(ArrayList<SavedIngredient> filteredProducts) {
         list = filteredProducts;
         notifyDataSetChanged();
     }

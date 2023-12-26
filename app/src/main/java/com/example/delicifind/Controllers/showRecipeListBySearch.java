@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,6 +14,7 @@ import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
 import com.example.delicifind.Listeners.RecipeClickListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
+import com.example.delicifind.R;
 
 import java.util.List;
 

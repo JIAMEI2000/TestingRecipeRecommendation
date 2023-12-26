@@ -2,17 +2,17 @@ package com.example.delicifind.Models;
 
 import com.google.firebase.database.Exclude;
 
-public class Pantry {
+public class SavedIngredient {
     @Exclude
     String key;
     String pName,quantity,purchasedDate,expiryDate,category,URL;
 
-    Pantry()
+    SavedIngredient()
     {
 
     }
 
-    public Pantry(String pName, String quantity, String purchasedDate,String expiryDate, String category, String URL) {
+    public SavedIngredient(String pName, String quantity, String purchasedDate, String expiryDate, String category, String URL) {
         this.pName = pName;
         this.quantity = quantity;
         this.purchasedDate = purchasedDate;

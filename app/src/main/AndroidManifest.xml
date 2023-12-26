@@ -16,49 +16,49 @@
         android:theme="@style/Theme.DeliciFind"
         tools:targetApi="31">
         <activity
-            android:name=".showRecipeNutrients"
+            android:name=".Controllers.showRecipeNutrients"
             android:exported="false" />
         <activity
-            android:name=".showRecipeListBySearch"
+            android:name=".Controllers.showRecipeListBySearch"
             android:exported="false" />
         <activity
-            android:name=".searchRecipesByIngredients"
+            android:name=".Controllers.searchRecipesByIngredients"
             android:exported="false" />
         <activity
-            android:name=".editUserProfile"
+            android:name=".Controllers.editUserProfile"
             android:exported="false" />
         <activity
-            android:name=".showUserProfile"
+            android:name=".Controllers.showUserProfile"
             android:exported="false" />
         <activity
-            android:name=".registerAccount"
+            android:name=".Controllers.registerAccount"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".Controllers.login"
             android:exported="false" />
         <activity
-            android:name=".showRecipeList"
+            android:name=".Controllers.showRecipeList"
             android:exported="false" />
         <activity
-            android:name=".editPantry"
+            android:name=".Controllers.editKitchen"
             android:exported="false" />
         <activity
-            android:name=".showRecipeDetails"
+            android:name=".Controllers.showRecipeDetails"
             android:exported="false" />
         <activity
-            android:name=".createNewProduct"
+            android:name=".Controllers.createNewIngredient"
             android:exported="false" />
         <activity
-            android:name=".addProductToPantry"
+            android:name=".Controllers.addIngredientToKitchen"
             android:exported="false" />
         <activity
-            android:name=".showProductOption"
+            android:name=".Controllers.showAvailableIngredientList"
             android:exported="false" />
         <activity
-            android:name=".showPantryList"
+            android:name=".Controllers.showKitchenList"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Controllers.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.delicifind;
+package com.example.delicifind.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.delicifind.Adapters.ProductOptionAdapter;
-import com.example.delicifind.Models.Pantry;
-import com.example.delicifind.Models.ProductOption;
+import com.example.delicifind.Adapters.AvailableIngredientAdapter;
+import com.example.delicifind.Models.AvailableIngredient;
+import com.example.delicifind.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class showProductOption extends AppCompatActivity {
+public class showAvailableIngredientList extends AppCompatActivity {
 
     RecyclerView productRV;
-    ArrayList<ProductOption> poList;
+    ArrayList<AvailableIngredient> poList;
     DatabaseReference poDatabase;
-    ProductOptionAdapter poAdapter;
+    AvailableIngredientAdapter poAdapter;
     ImageView addButton;
     TextView titleText;
     Spinner spinner;
@@ -43,21 +43,21 @@ public class showProductOption extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_product_option);
+        setContentView(R.layout.activity_show_available_ingredient_list);
 
         titleText = findViewById(R.id.titleText);
         titleText.setText("Available Ingredients List");
 
         productRV = findViewById(R.id.productRV);
-        View productOptionView = getLayoutInflater().inflate(R.layout.product_option, null);
+        View productOptionView = getLayoutInflater().inflate(R.layout.available_ingredient, null);
         addButton = productOptionView.findViewById(R.id.addButton);
 
-        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("ProductOption");
+        poDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("AvailableIngredient");
         productRV.setHasFixedSize(true);
         productRV.setLayoutManager(new LinearLayoutManager(this));
 
         poList = new ArrayList<>();
-        poAdapter = new ProductOptionAdapter(this, poList);
+        poAdapter = new AvailableIngredientAdapter(this, poList);
         productRV.setAdapter(poAdapter);
 
         //add product to kitchen
@@ -66,7 +66,7 @@ public class showProductOption extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ProductOption product = dataSnapshot.getValue(ProductOption.class);
+                    AvailableIngredient product = dataSnapshot.getValue(AvailableIngredient.class);
                     poList.add(product);
 
                 }
@@ -95,7 +95,7 @@ public class showProductOption extends AppCompatActivity {
                 categories.add("All");
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ProductOption product = snapshot.getValue(ProductOption.class);
+                    AvailableIngredient product = snapshot.getValue(AvailableIngredient.class);
                     String category = product.getCategory();
                     if (!categories.contains(category)) {
                         categories.add(category);
@@ -134,11 +134,11 @@ public class showProductOption extends AppCompatActivity {
             }
         });
 
-        poAdapter.setOnAddButtonClickListener(new ProductOptionAdapter.OnAddButtonClickListener() {
+        poAdapter.setOnAddButtonClickListener(new AvailableIngredientAdapter.OnAddButtonClickListener() {
             @Override
             public void onAddButtonClick(String poName, String category, String URL) {
                 // Handle the button click here
-                Intent intent = new Intent(showProductOption.this, addProductToPantry.class);
+                Intent intent = new Intent(showAvailableIngredientList.this, addIngredientToKitchen.class);
                 intent.putExtra("product_name", poName);
                 intent.putExtra("category", category);
                 intent.putExtra("product_image_url", URL);
@@ -151,7 +151,7 @@ public class showProductOption extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(showProductOption.this, createNewProduct.class));
+                startActivity(new Intent(showAvailableIngredientList.this, createNewIngredient.class));
             }
         });
         searchBar = findViewById(R.id.searchBar);
@@ -178,20 +178,20 @@ public class showProductOption extends AppCompatActivity {
     }
 
     private void searchList(String text){
-        ArrayList<ProductOption> searchList =new ArrayList<>();
-        for(ProductOption productOption:poList){
-            if(productOption.getPoName().toLowerCase().contains(text.toLowerCase())){
-                searchList.add(productOption);
+        ArrayList<AvailableIngredient> searchList =new ArrayList<>();
+        for(AvailableIngredient availableIngredient :poList){
+            if(availableIngredient.getPoName().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(availableIngredient);
             }
         }
         poAdapter.searchAvailableIngredients(searchList);
     }
 
     private void displayProductsByCategory(String selectedCategory) {
-        ArrayList<ProductOption> filteredProducts = new ArrayList<>();
+        ArrayList<AvailableIngredient> filteredProducts = new ArrayList<>();
 
         // Filter products by category
-        for (ProductOption product : poList) {
+        for (AvailableIngredient product : poList) {
             if (product.getCategory().equals(selectedCategory)) {
                 filteredProducts.add(product);
             }
