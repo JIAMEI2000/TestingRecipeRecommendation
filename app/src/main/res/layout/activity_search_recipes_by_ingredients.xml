@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="Search Recipes"
                 android:layout_marginTop="40dp"
+                android:backgroundTint="@color/purple_700"
                 />
 
         </LinearLayout>

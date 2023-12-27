@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.delicifind.Adapters.IngredientsAdapter;
+import com.example.delicifind.Adapters.RecipeIngredientsAdapter;
 import com.example.delicifind.Adapters.RecipeStepsAdapter;
 import com.example.delicifind.Listeners.RecipeDetailsListener;
 import com.example.delicifind.Models.AnalyzedInstruction;
@@ -32,7 +32,7 @@ public class showRecipeDetails extends AppCompatActivity {
     RecyclerView rvIngredients, rvSteps;
     RequestManager manager;
     ProgressDialog dialog;
-    IngredientsAdapter ingredientsAdapter;
+    RecipeIngredientsAdapter recipeIngredientsAdapter;
     RecipeStepsAdapter recipeStepsAdapter;
     Button btnNutritionInfo;
 
@@ -81,9 +81,9 @@ public class showRecipeDetails extends AppCompatActivity {
             Picasso.get().load(response.image).into(recipeImage);
 
             rvIngredients.setHasFixedSize(true);
-            rvIngredients.setLayoutManager(new LinearLayoutManager(showRecipeDetails.this,LinearLayoutManager.HORIZONTAL,false));
-            ingredientsAdapter = new IngredientsAdapter(showRecipeDetails.this,response.extendedIngredients);
-            rvIngredients.setAdapter(ingredientsAdapter);
+            rvIngredients.setLayoutManager(new LinearLayoutManager(showRecipeDetails.this,LinearLayoutManager.VERTICAL,false));
+            recipeIngredientsAdapter = new RecipeIngredientsAdapter(showRecipeDetails.this,response.extendedIngredients);
+            rvIngredients.setAdapter(recipeIngredientsAdapter);
 
             rvSteps.setHasFixedSize(true);
             rvSteps.setLayoutManager(new LinearLayoutManager(showRecipeDetails.this,LinearLayoutManager.VERTICAL,false));

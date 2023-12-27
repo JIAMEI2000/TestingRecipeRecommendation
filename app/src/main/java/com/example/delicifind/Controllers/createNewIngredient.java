@@ -109,6 +109,7 @@ public class createNewIngredient extends AppCompatActivity {
         categoryAdapter.add("Fruits");
         categoryAdapter.add("Dairy Products");
         categoryAdapter.add("Dry Staples");
+        categoryAdapter.add("Seasonings");
         catSelectBox.setAdapter(categoryAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Recipe").child("AvailableIngredient");
@@ -155,7 +156,7 @@ public class createNewIngredient extends AppCompatActivity {
                         databaseReference.push().setValue(availableIngredient)
                                 .addOnSuccessListener(aVoid -> {
                                     // After successfully writing to the database, fetch the latest data
-                                    Toast.makeText(createNewIngredient.this, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(createNewIngredient.this, "Ingredient Created Successfully!", Toast.LENGTH_SHORT).show();
                                     fetchLatestData();
 
                                 })

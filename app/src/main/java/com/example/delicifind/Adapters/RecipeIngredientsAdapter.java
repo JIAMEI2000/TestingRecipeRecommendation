@@ -16,24 +16,24 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHolder>{
+public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredientsViewHolder>{
 
     Context context;
     List<ExtendedIngredient> list;
 
-    public IngredientsAdapter(Context context, List<ExtendedIngredient> list) {
+    public RecipeIngredientsAdapter(Context context, List<ExtendedIngredient> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new IngredientsViewHolder(LayoutInflater.from(context).inflate(R.layout.recipe_ingredients,parent,false));
+    public RecipeIngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new RecipeIngredientsViewHolder(LayoutInflater.from(context).inflate(R.layout.recipe_ingredients,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeIngredientsViewHolder holder, int position) {
         holder.ingredientsName.setText(list.get(position).name);
         holder.ingredientsName.setSelected(true);
         holder.ingredientsQuantity.setText(list.get(position).original);
@@ -47,11 +47,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
     }
 }
 
-class IngredientsViewHolder extends RecyclerView.ViewHolder{
+class RecipeIngredientsViewHolder extends RecyclerView.ViewHolder{
 
     TextView ingredientsQuantity, ingredientsName;
     ImageView ingredientsImage;
-    public IngredientsViewHolder(@NonNull View itemView) {
+    public RecipeIngredientsViewHolder(@NonNull View itemView) {
         super(itemView);
         ingredientsImage = itemView.findViewById(R.id.ingredientsImage);
         ingredientsName = itemView.findViewById(R.id.ingredientsName);
