@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.R;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class login extends AppCompatActivity {
 
     EditText loginEmail,loginPassword;
+    TextView forgotPwdLink,signUplink;
     Button loginBtn;
     FirebaseAuth auth;
     ProgressDialog progressDialog;
@@ -35,6 +37,16 @@ public class login extends AppCompatActivity {
         loginEmail = findViewById(R.id.emailField);
         loginPassword = findViewById(R.id.passwordField);
         loginBtn = findViewById(R.id.loginButton);
+        forgotPwdLink = findViewById(R.id.forgotPasswordLink);
+        signUplink = findViewById(R.id.signUpLink);
+
+        forgotPwdLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(login.this, forgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +91,14 @@ public class login extends AppCompatActivity {
                     loginEmail.setError("Please enter valid email ");
                 }
 
+            }
+        });
+
+        signUplink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(login.this, registerAccount.class);
+                startActivity(intent);
             }
         });
 

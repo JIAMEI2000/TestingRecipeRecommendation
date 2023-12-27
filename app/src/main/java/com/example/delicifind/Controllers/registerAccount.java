@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.Models.User;
@@ -24,6 +25,7 @@ public class registerAccount extends AppCompatActivity {
 
     Button createAcc;
     EditText name,email,password;
+    TextView loginLink;
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -39,6 +41,7 @@ public class registerAccount extends AppCompatActivity {
         name = findViewById(R.id.nameField);
         email = findViewById(R.id.emailField);
         password = findViewById(R.id.passwordField);
+        loginLink = findViewById(R.id.loginLink);
 
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,14 @@ public class registerAccount extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(registerAccount.this, login.class);
+                startActivity(intent);
             }
         });
     }

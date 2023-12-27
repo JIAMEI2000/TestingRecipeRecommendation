@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class showUserProfile extends AppCompatActivity {
 
+    ProgressDialog dialog;
     TextView titleText,profileName,profileEmail,profilePassword;
     Button editBtn,deleteAccBtn,logoutBtn;
     FirebaseUser user;
@@ -64,6 +66,10 @@ public class showUserProfile extends AppCompatActivity {
         titleText = findViewById(R.id.titleText);
         titleText.setText("Profile");
 
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Loading...");
+        dialog.show();
+
         profileName = findViewById(R.id.userName);
         profileEmail = findViewById(R.id.userEmail);
         profilePassword = findViewById(R.id.userPassword);
@@ -88,6 +94,8 @@ public class showUserProfile extends AppCompatActivity {
                     profileName.setText("Welcome, "+name);
                     profileEmail.setText(email);
                     profilePassword.setText(password);
+
+                    dialog.dismiss();
 
                     editBtn.setOnClickListener(new View.OnClickListener() {
                         @Override

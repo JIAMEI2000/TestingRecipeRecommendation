@@ -3,7 +3,7 @@ package com.example.delicifind.Controllers;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.delicifind.Listeners.PantryItemsResponseListener;
+import com.example.delicifind.Listeners.KitchenItemsResponseListener;
 import com.example.delicifind.Listeners.RecipeDetailsListener;
 import com.example.delicifind.Listeners.RecipeNutrientsResponseListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
@@ -43,7 +43,7 @@ public class RequestManager {
         pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient");
     }
 
-    public void retrievePantryItems(PantryItemsResponseListener listener) {
+    public void retrievePantryItems(KitchenItemsResponseListener listener) {
         pantryDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

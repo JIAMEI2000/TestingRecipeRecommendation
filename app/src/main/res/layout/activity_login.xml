@@ -76,7 +76,7 @@
             android:textColorHint="#808080"/>
 
     <TextView
-        android:id="@+id/forgotPsdTextLink"
+        android:id="@+id/forgotPasswordLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot password?"
@@ -108,6 +108,32 @@
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         app:cornerRadius="48dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/signUpLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:textAlignment="center"
+                android:textColor="@color/purple_700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="2dp"/>
+        </LinearLayout>
 
     </LinearLayout>
 

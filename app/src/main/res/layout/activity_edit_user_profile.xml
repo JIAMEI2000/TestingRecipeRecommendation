@@ -40,34 +40,34 @@
                 android:id="@+id/nameField"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="  Name"
-                android:inputType="textPersonName"
-                android:textColorHint="#808080"
+                android:background="@drawable/custom_border"
                 android:drawableLeft="@drawable/baseline_person_pin_24"
                 android:drawablePadding="8dp"
+                android:hint="  Name"
+                android:inputType="textPersonName"
                 android:padding="8dp"
-                android:background="@drawable/custom_border"/>
+                android:textColorHint="#808080" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email: "
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Email: "-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginTop="20dp"/>-->
 
-            <EditText
-                android:id="@+id/emailField"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="  User Email Address "
-                android:inputType="textEmailAddress"
-                android:textColorHint="#808080"
-                android:drawableLeft="@drawable/baseline_email_24"
-                android:drawablePadding="8dp"
-                android:padding="8dp"
-                android:background="@drawable/custom_border"/>
+<!--            <EditText-->
+<!--                android:id="@+id/emailField"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:hint="  User Email Address "-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:textColorHint="#808080"-->
+<!--                android:drawableLeft="@drawable/baseline_email_24"-->
+<!--                android:drawablePadding="8dp"-->
+<!--                android:padding="8dp"-->
+<!--                android:background="@drawable/custom_border"/>-->
 
             <TextView
                 android:layout_width="wrap_content"

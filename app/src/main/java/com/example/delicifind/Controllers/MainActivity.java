@@ -14,8 +14,7 @@ import com.example.delicifind.R;
 public class MainActivity extends AppCompatActivity {
 
     ImageView logo;
-    TextView loginLink;
-    Button createAccBtn;
+    Button createAccBtn, loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         logo = findViewById(R.id.logo);
-        loginLink = findViewById(R.id.loginLink);
+        loginBtn = findViewById(R.id.loginButton);
         createAccBtn = findViewById(R.id.createAccButton);
 
         createAccBtn.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginLink.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, login.class));

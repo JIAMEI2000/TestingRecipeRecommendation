@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delicifind.Adapters.RecipesByIngredientsAdapter;
+import com.example.delicifind.Listeners.KitchenItemsResponseListener;
 import com.example.delicifind.Listeners.RecipeClickListener;
 import com.example.delicifind.Listeners.RecipesByIngredientsResponseListener;
 import com.example.delicifind.Models.RecipesByIngredientsApiResponse;
@@ -65,7 +66,7 @@ public class showRecipeList extends AppCompatActivity {
         dialog.setTitle("Loading...");
 
         manager = new RequestManager(this);
-        manager.retrievePantryItems(new com.example.delicifind.Listeners.PantryItemsResponseListener() {
+        manager.retrievePantryItems(new KitchenItemsResponseListener() {
             @Override
             public void onPantryItemsRetrieved(String concatenatedIngredients) {
                 // Now that you have the pantry items, proceed to get recipes
