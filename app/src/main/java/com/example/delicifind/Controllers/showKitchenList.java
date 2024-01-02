@@ -35,7 +35,7 @@ public class showKitchenList extends AppCompatActivity {
     ArrayList<SavedIngredient> list;
     DatabaseReference pantryDatabase;
     KitchenAdapter kitchenAdapter;
-    TextView titleText;
+    TextView titleText,noIngredientsMessage;
     FloatingActionButton floatingActionButton;
     Spinner spinner;
     SearchView searchBar;
@@ -80,6 +80,7 @@ public class showKitchenList extends AppCompatActivity {
         titleText = findViewById(R.id.titleText);
         titleText.setText("Kitchen Inventory");
 
+        noIngredientsMessage = findViewById(R.id.noIngredientsMessage);
         recyclerView = findViewById(R.id.pantryRV);
         auth = FirebaseAuth.getInstance();
         pantryDatabase = FirebaseDatabase.getInstance().getReference("Recipe").child("User").child(auth.getCurrentUser().getUid()).child("SavedIngredient");
@@ -89,6 +90,7 @@ public class showKitchenList extends AppCompatActivity {
         list = new ArrayList<>();
         kitchenAdapter = new KitchenAdapter(this, list);
         recyclerView.setAdapter(kitchenAdapter);
+
 
         pantryDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +102,13 @@ public class showKitchenList extends AppCompatActivity {
                     list.add(savedIngredient);
                 }
                 kitchenAdapter.notifyDataSetChanged();
+
+                // Check if the list is empty
+                if (list.isEmpty()) {
+                    noIngredientsMessage.setVisibility(View.VISIBLE);
+                } else {
+                    noIngredientsMessage.setVisibility(View.GONE);
+                }
             }
 
             @Override

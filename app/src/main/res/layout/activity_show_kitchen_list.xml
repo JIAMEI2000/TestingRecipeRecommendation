@@ -42,6 +42,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/noIngredientsMessage"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:text="\nYour kitchen is empty. \n\nStart adding ingredients \ninto your kitchen now!"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pantryRV"
         android:layout_width="match_parent"

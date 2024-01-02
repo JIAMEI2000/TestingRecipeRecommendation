@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/purchasedDate_title"
                     android:text="Purchased on: "
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/displayPurchasedDate"
                     android:text="Purchased Date"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/expiryDate_title"
                     android:text="Expired on: "
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/displayExpiryDate"
                     android:text="Expiry Date"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/quantity_title"
                     android:text="Quantity: "
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/displayQuantity"
                     android:text="Quantity"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
