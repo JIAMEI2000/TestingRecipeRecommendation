@@ -152,7 +152,7 @@ public class editUserProfile extends AppCompatActivity {
                         user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(editUserProfile.this, "Password Updated!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(editUserProfile.this, "Profile Updated!", Toast.LENGTH_SHORT).show();
                                 reference.child(userID).child("Profile").child("password").setValue(newPassword);
 
                                 Intent intent = new Intent(editUserProfile.this, showUserProfile.class);
@@ -161,7 +161,7 @@ public class editUserProfile extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(editUserProfile.this, "Failed to update password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(editUserProfile.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
                             }
                         });
                     } else {
